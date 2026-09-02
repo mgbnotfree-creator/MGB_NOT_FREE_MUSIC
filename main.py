@@ -1,5 +1,5 @@
 import logging
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import yt_dlp
 import config
@@ -59,5 +59,8 @@ async def play_handler(client: Client, message: Message):
 
 if __name__ == "__main__":
     logger.info("Starting Advanced Music Bot...")
-    app.run()
-  
+    app.start()
+    logger.info("Bot started successfully! Running idle...")
+    idle()
+    app.stop()
+    
