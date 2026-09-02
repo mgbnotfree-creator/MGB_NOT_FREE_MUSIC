@@ -1,6 +1,18 @@
 import asyncio
+import os
+import threading
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-# Sabse pehle event loop create aur set karein
+# Render ke port requirement ko satisfy karne ke liye dummy server
+def run_dummy_server():
+    port = int(os.environ.get("PORT", 8080))
+    server_address = ('0.0.0.0', port)
+    httpd = HTTPServer(server_address, BaseHTTPRequestHandler)
+    httpd.serve_forever()
+
+threading.Thread(target=run_dummy_server, daemon=True).start()
+
+# Event loop setup
 try:
     loop = asyncio.get_event_loop()
 except RuntimeError:
@@ -75,4 +87,4 @@ async def main():
 
 if __name__ == "__main__":
     loop.run_until_complete(main())
-    
+                                 
