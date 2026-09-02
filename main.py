@@ -3,22 +3,18 @@ import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
+# Dummy server to satisfy Render port binding if it's a Web Service
 def run_dummy_server():
     port = int(os.environ.get("PORT", 8080))
     server_address = ('0.0.0.0', port)
     httpd = HTTPServer(server_address, BaseHTTPRequestHandler)
     httpd.serve_forever()
 
-threading.Thread(target=run_dummy_server, daemon=True).start()
-
-try:
-    loop = asyncio.get_event_loop()
-except RuntimeError:
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+if 'PORT' in os.environ:
+    threading.Thread(target=run_dummy_server, daemon=True).start()
 
 import logging
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import yt_dlp
 import config
@@ -55,7 +51,6 @@ async def play_handler(client: Client, message: Message):
     query = " ".join(message.command[1:])
     processing_msg = await message.reply_text(f"🔍 Searching for: {query}...")
 
-    # Bot detection bypass karne ke liye android client extractor argument add kiya hai
     ydl_opts = {
         'format': 'bestaudio/best',
         'noplaylist': True,
@@ -98,13 +93,6 @@ async def play_handler(client: Client, message: Message):
         logger.error(f"Error details: {e}")
         await processing_msg.edit_text(f"❌ Error: {str(e)}")
 
-async def main():
-    logger.info("Starting bot client...")
-    await app.start()
-    logger.info("Bot started successfully and running live!")
-    await idle()
-    await app.stop()
-
 if __name__ == "__main__":
-    loop.run_until_complete(main())
-    
+    logger.info("Starting bot using app.run()...")
+    app.run()
