@@ -1,0 +1,12 @@
+API_ID = 26119956
+API_HASH = "2f89b4530b742a63430def3f53069ff5"
+BOT_TOKEN = "8901320364:AAE3Jalo-7M4AjllSDY4xMUL-csBdz_XcxY"
+STRING_SESSION = "BQFsiEgAhQNgL742i1wS7GZsFkaJDYPmn8nWfTCT7rMngNBtwXj-9v0zcGwEDXt_szPf8oZXFWNFMDjqvwkhQaH_jCB9yFiNLj5LrxVnIFfvBDY93B2cvZwAUal-rw0yYHnGgsTqmMS0ph7qtk-CqeqqCeyJza5nSsuRkv1bKVoI0Dkzh2VsRua8_AOFnZN3RzCP0kTGAkFV6sOutqib8kM-YWi4CT0ZFDNynKlU8laLu72ehO8MtF3o6Ca4DEtlFiuXcwM7-CWZDZGIadQtnC2SrSVen6xCxEg_egbYM3TFCnF70t6Zi2ORfUd-qeBGO_nwH3M04dlWxPfypVGOAcDGo-wOgwAAAAIPu7_PAA"
+LOG_GROUP_ID = -1004490671401
+OWNER_ID = 8252065621
+MONGO_DB_URI = "mongodb+srv://musicuser:music123@cluster0.qz8lbes.mongodb.net/?appName=Cluster0"
+API_TYPE = "audio"
+API_FORMAT = "mp3"
+SUPPORT_URL = "https://t.me/MGB_SUPPPOT"
+CHANNEL_URL = "https://t.me/Pocket_FM_Deals_Fast_Delivery"
+OWNER_URL = "https://t.me/MGB_SUPPPOT"
