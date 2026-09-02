@@ -1,6 +1,14 @@
 import asyncio
+
+# Sabse pehle event loop create aur set karein
+try:
+    loop = asyncio.get_event_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
 import logging
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import yt_dlp
 import config
@@ -58,12 +66,13 @@ async def play_handler(client: Client, message: Message):
         logger.error(f"Error: {e}")
         await processing_msg.edit_text("❌ Kuch error aayi hai. Dubara koshish karein.")
 
+async def main():
+    logger.info("Starting bot client...")
+    await app.start()
+    logger.info("Bot started successfully and running live!")
+    await idle()
+    await app.stop()
+
 if __name__ == "__main__":
-    logger.info("Starting Advanced Music Bot...")
-    try:
-        loop = asyncio.get_event_loop()
-    except RuntimeError:
-        loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(loop)
+    loop.run_until_complete(main())
     
-    app.run()
