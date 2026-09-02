@@ -94,7 +94,8 @@ async def play_handler(client: Client, message: Message):
             )
     except Exception as e:
         logger.error(f"Error details: {e}")
-        await processing_msg.edit_text("❌ Gaana dhoondne me kuch samasya aayi. Kripya thodi der baad koshish karein.")
+        # Asli error message telegram par dikhega
+        await processing_msg.edit_text(f"❌ Error: {str(e)}")
 
 async def main():
     logger.info("Starting bot client...")
