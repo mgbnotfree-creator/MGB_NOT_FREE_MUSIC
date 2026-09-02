@@ -1,5 +1,6 @@
+import asyncio
 import logging
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 import yt_dlp
 import config
@@ -58,9 +59,12 @@ async def play_handler(client: Client, message: Message):
         await processing_msg.edit_text("❌ Kuch error aayi hai. Dubara koshish karein.")
 
 if __name__ == "__main__":
-    logger.info("Starting Advanced Music Bot...")
-    app.start()
-    logger.info("Bot started successfully! Running idle...")
-    idle()
-    app.stop()
+    logger.info("Starting Advanced Music Bot with Asyncio loop...")
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    app.run()
     
