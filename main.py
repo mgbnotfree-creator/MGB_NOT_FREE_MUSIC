@@ -55,24 +55,46 @@ async def play_handler(client: Client, message: Message):
     query = " ".join(message.command[1:])
     processing_msg = await message.reply_text(f"🔍 Searching for: {query}...")
 
-    ydl_opts = {'format': 'bestaudio/best', 'noplaylist': True, 'default_search': 'ytsearch1', 'quiet': True}
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'noplaylist': True,
+        'default_search': 'ytsearch1',
+        'quiet': True,
+        'no_warnings': True,
+        'geo_bypass': True
+    }
+    
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(query, download=False)
             if 'entries' in info:
+                if not info['entries']:
+                    await processing_msg.edit_text("❌ Koi gaana nahi mila. Kripya dusra naam try karein.")
+                    return
                 info = info['entries'][0]
-            title, duration, webpage_url, thumbnail = info.get('title'), info.get('duration_string', 'N/A'), info.get('webpage_url'), info.get('thumbnail')
+            
+            title = info.get('title', 'Unknown Title')
+            duration = info.get('duration_string', 'N/A')
+            webpage_url = info.get('webpage_url', '#')
+            thumbnail = info.get('thumbnail', None)
 
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("📥 Watch on YouTube", url=webpage_url)]])
         await processing_msg.delete()
-        await message.reply_photo(
-            photo=thumbnail,
-            caption=f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
-            reply_markup=keyboard
-        )
+        
+        if thumbnail:
+            await message.reply_photo(
+                photo=thumbnail,
+                caption=f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
+                reply_markup=keyboard
+            )
+        else:
+            await message.reply_text(
+                f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
+                reply_markup=keyboard
+            )
     except Exception as e:
-        logger.error(f"Error: {e}")
-        await processing_msg.edit_text("❌ Kuch error aayi hai. Dubara koshish karein.")
+        logger.error(f"Error details: {e}")
+        await processing_msg.edit_text("❌ Gaana dhoondne me kuch samasya aayi. Kripya thodi der baad koshish karein.")
 
 async def main():
     logger.info("Starting bot client...")
