@@ -55,13 +55,15 @@ async def play_handler(client: Client, message: Message):
     query = " ".join(message.command[1:])
     processing_msg = await message.reply_text(f"🔍 Searching for: {query}...")
 
+    # Bot detection bypass karne ke liye android client extractor argument add kiya hai
     ydl_opts = {
         'format': 'bestaudio/best',
         'noplaylist': True,
         'default_search': 'ytsearch1',
         'quiet': True,
         'no_warnings': True,
-        'geo_bypass': True
+        'geo_bypass': True,
+        'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
     }
     
     try:
@@ -94,7 +96,6 @@ async def play_handler(client: Client, message: Message):
             )
     except Exception as e:
         logger.error(f"Error details: {e}")
-        # Asli error message telegram par dikhega
         await processing_msg.edit_text(f"❌ Error: {str(e)}")
 
 async def main():
