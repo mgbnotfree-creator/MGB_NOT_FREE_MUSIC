@@ -59,12 +59,11 @@ async def play_handler(client: Client, message: Message):
         await processing_msg.edit_text("❌ Kuch error aayi hai. Dubara koshish karein.")
 
 if __name__ == "__main__":
-    logger.info("Starting Advanced Music Bot with Asyncio loop...")
+    logger.info("Starting Advanced Music Bot...")
     try:
         loop = asyncio.get_event_loop()
     except RuntimeError:
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-
-    app.run()
     
+    app.run()
