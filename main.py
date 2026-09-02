@@ -3,7 +3,6 @@ import os
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
-# Render ke port requirement ko satisfy karne ke liye dummy server
 def run_dummy_server():
     port = int(os.environ.get("PORT", 8080))
     server_address = ('0.0.0.0', port)
@@ -12,7 +11,6 @@ def run_dummy_server():
 
 threading.Thread(target=run_dummy_server, daemon=True).start()
 
-# Event loop setup
 try:
     loop = asyncio.get_event_loop()
 except RuntimeError:
@@ -44,19 +42,18 @@ async def start_handler(client: Client, message: Message):
         [InlineKeyboardButton("👑 Owner", url=config.OWNER_URL)]
     ])
     await message.reply_text(
-        f"Hello **{user.first_name}**! 🎶\n\nMain ek Advanced Telegram Music Assistant Bot hoon. `/play [Song Name]` command ka use karein.",
-        reply_markup=keyboard,
-        parse_mode="markdown"
+        f"Hello {user.first_name}! Main ek Advanced Telegram Music Assistant Bot hoon. /play [Song Name] command ka use karein.",
+        reply_markup=keyboard
     )
 
 @app.on_message(filters.command("play"))
 async def play_handler(client: Client, message: Message):
     if len(message.command) < 2:
-        await message.reply_text("❌ Kripya gaane ka naam likhein!\nExample: `/play Unstoppable`", parse_mode="markdown")
+        await message.reply_text("❌ Kripya gaane ka naam likhein!\nExample: /play Unstoppable")
         return
 
     query = " ".join(message.command[1:])
-    processing_msg = await message.reply_text(f"🔍 Searching for: *{query}*...", parse_mode="markdown")
+    processing_msg = await message.reply_text(f"🔍 Searching for: {query}...")
 
     ydl_opts = {'format': 'bestaudio/best', 'noplaylist': True, 'default_search': 'ytsearch1', 'quiet': True}
     try:
@@ -70,9 +67,8 @@ async def play_handler(client: Client, message: Message):
         await processing_msg.delete()
         await message.reply_photo(
             photo=thumbnail,
-            caption=f"🎶 **Track Found!**\n\n🏷 **Title:** {title}\n⏱ **Duration:** {duration}",
-            reply_markup=keyboard,
-            parse_mode="markdown"
+            caption=f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
+            reply_markup=keyboard
         )
     except Exception as e:
         logger.error(f"Error: {e}")
@@ -87,4 +83,4 @@ async def main():
 
 if __name__ == "__main__":
     loop.run_until_complete(main())
-                                 
+    
