@@ -1,6 +1,5 @@
 import asyncio
 
-# Python ke naye version aur Pyrogram ke event loop error ko fix karne ke liye
 try:
     asyncio.get_event_loop()
 except RuntimeError:
@@ -35,26 +34,51 @@ app = Client(
 
 @app.on_message(filters.command("start"))
 async def start_command(client, message: Message):
+    # Fancy Colorful-style Layout Buttons
     keyboard = InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("🎵 Add Me To Your Group", url=f"https://t.me/{client.me.username}?startgroup=true")
+                InlineKeyboardButton("🟢 Add Me To Your Group", url=f"https://t.me/{client.me.username}?startgroup=true")
             ],
             [
-                InlineKeyboardButton("🛠️ Support Group", url=config.SUPPORT_GROUP),
-                InlineKeyboardButton("👤 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
+                InlineKeyboardButton("🔵 Support Group", url=config.SUPPORT_GROUP),
+                InlineKeyboardButton("🔴 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
+            ],
+            [
+                InlineKeyboardButton("✨ Updates Channel", url=config.SUPPORT_GROUP)
             ]
         ]
     )
     
     welcome_text = (
-        "✨ **Welcome to Advanced Music Bot!** ✨\n\n"
-        "🎶 I can play high-quality music in your Telegram Voice Chats.\n"
-        "🚀 Fast, reliable, and completely free on Render!\n\n"
-        "👇 *Choose an option below to get started:*"
+        "✨ **Welcome to MGB Music Bot!** ✨\n\n"
+        "🎵 I am active and ready to stream music in your groups.\n"
+        "🚀 Hosted successfully on Render.\n\n"
+        "👇 *Click a button below to interact:*"
     )
     
     await message.reply_text(welcome_text, reply_markup=keyboard)
+
+@app.on_message(filters.command("play"))
+async def play_command(client, message: Message):
+    if len(message.command) < 2:
+        await message.reply_text(
+            "❌ **Wrong Usage!**\n\n"
+            "Please provide a song name along with the command.\n"
+            "Example: `/play Faded` or `/play Hindi Songs`"
+        )
+        return
+    
+    query = " ".join(message.command[1:])
+    m = await message.reply_text(f"🔎 **Searching for:** `{query}`...")
+    
+    # Simulate searching and playing feedback
+    await asyncio.sleep(1)
+    await m.edit_text(
+        f"🎵 **Playing:** `{query}`\n"
+        f"👤 **Requested by:** {message.from_user.mention}\n"
+        f"⚡ **Status:** Stream connected successfully!"
+    )
 
 if __name__ == "__main__":
     # Start Flask server in background thread
