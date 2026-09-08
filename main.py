@@ -13,52 +13,48 @@ def home():
     return "Music Bot is active and running!"
 
 def run_web():
-    port = int(os.environ.get("PORT", 10000))
-    app_server.run(host='0.0.0.0', port=port, use_reloader=False)
+    try:
+        port = int(os.environ.get("PORT", 10000))
+        app_server.run(host='0.0.0.0', port=port, use_reloader=False)
+    except Exception as e:
+        print(f"Flask Error: {e}")
 
 # Pyrogram Bot Client Setup using config.py
-app = Client(
-    "MusicBot",
-    api_id=config.API_ID,
-    api_hash=config.API_HASH,
-    bot_token=config.BOT_TOKEN
-)
+try:
+    app = Client(
+        "MusicBot",
+        api_id=config.API_ID,
+        api_hash=config.API_HASH,
+        bot_token=config.BOT_TOKEN
+    )
+except Exception as e:
+    print(f"Pyrogram Client Init Error: {e}")
 
 @app.on_message(filters.command("start"))
 async def start_command(client, message: Message):
-    keyboard = InlineKeyboardMarkup(
-        [
+    try:
+        keyboard = InlineKeyboardMarkup(
             [
-                InlineKeyboardButton("🎵 Add Me To Your Group", url=f"https://t.me/{client.me.username}?startgroup=true")
-            ],
-            [
-                InlineKeyboardButton("🛠️ Support Group", url=config.SUPPORT_GROUP),
-                InlineKeyboardButton("👤 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
-            ],
-            [
-                InlineKeyboardButton("📜 Commands Help", callback_data="help_menu")
+                [
+                    InlineKeyboardButton("🎵 Add Me To Your Group", url=f"https://t.me/{client.me.username}?startgroup=true")
+                ],
+                [
+                    InlineKeyboardButton("🛠️ Support Group", url=config.SUPPORT_GROUP),
+                    InlineKeyboardButton("👤 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
+                ]
             ]
-        ]
-    )
-    
-    welcome_text = (
-        "✨ **Welcome to Advanced Music Bot!** ✨\n\n"
-        "🎶 I can play high-quality music in your Telegram Voice Chats.\n"
-        "🚀 Fast, reliable, and completely free on Render!\n\n"
-        "👇 *Choose an option below to get started:*"
-    )
-    
-    await message.reply_text(welcome_text, reply_markup=keyboard)
-
-@app.on_message(filters.command("play"))
-async def play_command(client, message: Message):
-    if len(message.command) < 2:
-        await message.reply_text("❌ **Please provide a song name.**\nExample: `/play Faded`")
-        return
-    
-    query = " ".join(message.command[1:])
-    m = await message.reply_text(f"🔎 Searching for `{query}`...")
-    await m.edit_text(f"🎵 Playing **{query}** successfully! (Stream connected)")
+        )
+        
+        welcome_text = (
+            "✨ **Welcome to Advanced Music Bot!** ✨\n\n"
+            "🎶 I can play high-quality music in your Telegram Voice Chats.\n"
+            "🚀 Fast, reliable, and completely free on Render!\n\n"
+            "👇 *Choose an option below to get started:*"
+        )
+        
+        await message.reply_text(welcome_text, reply_markup=keyboard)
+    except Exception as e:
+        print(f"Start command error: {e}")
 
 if __name__ == "__main__":
     # Start Flask server in background thread
@@ -66,7 +62,9 @@ if __name__ == "__main__":
     web_thread.daemon = True
     web_thread.start()
     
-    print("Bot is starting successfully...")
-    # Start Pyrogram Bot in main thread
-    app.run()
-    
+    print("Bot is starting up...")
+    try:
+        app.run()
+    except Exception as e:
+        print(f"App run error: {e}")
+        
