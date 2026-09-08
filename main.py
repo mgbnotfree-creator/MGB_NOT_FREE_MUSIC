@@ -5,17 +5,16 @@ from threading import Thread
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
-from pytgcalls.types.input_stream import InputAudioStream
 from pytgcalls.types.input_stream import AudioPiped
 import yt_dlp
 import config
 
-# Flask Server for Render Keep-Alive (Runs on Main Thread)
+# Flask Server for Render (Must run on main thread to bind port)
 app_server = Flask('')
 
 @app_server.route('/')
 def home():
-    return "Music Bot & VC Streamer is active!"
+    return "Music Bot & VC Streamer is active and running!"
 
 # Pyrogram Bot Client Setup
 app = Client(
@@ -114,10 +113,12 @@ def run_telegram_bot():
     loop.run_until_complete(main())
 
 if __name__ == "__main__":
+    # Start Telegram Bot in a background thread
     bot_thread = Thread(target=run_telegram_bot)
     bot_thread.daemon = True
     bot_thread.start()
     
+    # Run Flask Web Server on the main thread to satisfy Render's port binding requirement
     port = int(os.environ.get("PORT", 10000))
     app_server.run(host='0.0.0.0', port=port)
-                                                       
+        
