@@ -5,11 +5,10 @@ from threading import Thread
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
-from pytgcalls.types import AudioPiped
 import yt_dlp
 import config
 
-# Flask Server for Render (Must run on main thread to bind port)
+# Flask Server for Render (Satisfies port binding requirement)
 app_server = Flask('')
 
 @app_server.route('/')
@@ -78,9 +77,10 @@ async def play_command(client, message: Message):
             stream_url = info['url']
             song_title = info['title']
         
-        await call_py.join_group_call(
+        # Updated play method for latest py-tgcalls
+        await call_py.play(
             message.chat.id,
-            AudioPiped(stream_url)
+            stream_url
         )
         
         await m.edit_text(
@@ -113,12 +113,11 @@ def run_telegram_bot():
     loop.run_until_complete(main())
 
 if __name__ == "__main__":
-    # Start Telegram Bot in a background thread
+    # Start Telegram Bot in background thread
     bot_thread = Thread(target=run_telegram_bot)
     bot_thread.daemon = True
     bot_thread.start()
     
-    # Run Flask Web Server on the main thread to satisfy Render's port binding requirement
+    # Run Flask Web Server on main thread
     port = int(os.environ.get("PORT", 10000))
     app_server.run(host='0.0.0.0', port=port)
-        
