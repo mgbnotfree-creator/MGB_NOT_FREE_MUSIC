@@ -82,7 +82,6 @@ async def play_command(client, message: Message):
     m = await message.reply_text(f"🔎 Searching for `{query}` on YouTube...")
 
     try:
-        # Extract direct audio URL using yt-dlp
         ydl_opts = {'format': 'bestaudio', 'noplaylist': True}
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(f"ytsearch:{query}", download=False)
@@ -91,7 +90,6 @@ async def play_command(client, message: Message):
             stream_url = info['url']
             song_title = info['title']
         
-        # Join Voice Chat and Play Audio
         await call_py.join_group_call(
             message.chat.id,
             AudioPiped(stream_url)
@@ -114,7 +112,6 @@ async def stop_command(client, message: Message):
         await message.reply_text(f"❌ Error: `{str(e)}`")
 
 if __name__ == "__main__":
-    # Start Flask web server in background thread
     web_thread = Thread(target=run_web)
     web_thread.daemon = True
     web_thread.start()
@@ -123,4 +120,3 @@ if __name__ == "__main__":
     user_app.start()
     call_py.start()
     app.run()
-    
