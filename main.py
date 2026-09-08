@@ -1,31 +1,20 @@
 import asyncio
-
-try:
-    asyncio.get_event_loop()
-except RuntimeError:
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
 import os
 from flask import Flask
 from threading import Thread
-from pyrogram import Client, filters
+from pyrogram import Client, filters, idle
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
 from pytgcalls.types import AudioPiped
 import yt_dlp
 import config
 
-# Flask Server for Render Keep-Alive
+# Flask Server for Render Keep-Alive (Runs on Main Thread)
 app_server = Flask('')
 
 @app_server.route('/')
 def home():
     return "Music Bot & VC Streamer is active!"
-
-def run_web():
-    port = int(os.environ.get("PORT", 10000))
-    app_server.run(host='0.0.0.0', port=port, use_reloader=False)
 
 # Pyrogram Bot Client Setup
 app = Client(
@@ -36,8 +25,7 @@ app = Client(
 )
 
 # PyTgCalls Assistant Userbot Setup using STRING_SESSION
-from pyrogram import Client as UserClient
-user_app = UserClient(
+user_app = Client(
     "Assistant",
     api_id=config.API_ID,
     api_hash=config.API_HASH,
@@ -111,14 +99,26 @@ async def stop_command(client, message: Message):
     except Exception as e:
         await message.reply_text(f"❌ Error: `{str(e)}`")
 
-if __name__ == "__main__":
-    web_thread = Thread(target=run_web)
-    web_thread.daemon = True
-    web_thread.start()
+def run_telegram_bot():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
     
-    print("Starting Telegram Music Bot & PyTgCalls...")
-    user_app.start()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(call_py.start())
-    app.run()
+    async def main():
+        print("Starting Telegram Music Bot & PyTgCalls...")
+        await user_app.start()
+        await call_py.start()
+        await app.start()
+        await idle()
+        
+    loop.run_until_complete(main())
+
+if __name__ == "__main__":
+    # Start Telegram bot in background thread so port opens immediately
+    bot_thread = Thread(target=run_telegram_bot)
+    bot_thread.daemon = True
+    bot_thread.start()
+    
+    # Run Flask web server on main thread to satisfy Render's port binding check
+    port = int(os.environ.get("PORT", 10000))
+    app_server.run(host='0.0.0.0', port=port)
     
