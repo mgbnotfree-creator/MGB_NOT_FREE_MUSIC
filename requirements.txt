@@ -3,4 +3,4 @@ tgcrypto
 yt-dlp
 flask
 requests
-py-tgcalls==0.9.7
+py-tgcalls
