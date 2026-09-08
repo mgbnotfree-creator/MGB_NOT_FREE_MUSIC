@@ -3,5 +3,4 @@ tgcrypto
 yt-dlp
 flask
 requests
-pymongo
-motor
+py-tgcalls
