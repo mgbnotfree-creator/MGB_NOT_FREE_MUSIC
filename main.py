@@ -5,7 +5,7 @@ from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import config
 
-# Flask Server for Render Keep-Alive (Sleep na hone de)
+# Flask Server for Render Keep-Alive
 app_server = Flask('')
 
 @app_server.route('/')
@@ -14,7 +14,7 @@ def home():
 
 def run_web():
     port = int(os.environ.get("PORT", 10000))
-    app_server.run(host='0.0.0.0', port=port)
+    app_server.run(host='0.0.0.0', port=port, use_reloader=False)
 
 # Pyrogram Bot Client Setup using config.py
 app = Client(
@@ -26,7 +26,6 @@ app = Client(
 
 @app.on_message(filters.command("start"))
 async def start_command(client, message: Message):
-    # Colorful & Attractive UI Design with Inline Keyboards
     keyboard = InlineKeyboardMarkup(
         [
             [
@@ -62,10 +61,12 @@ async def play_command(client, message: Message):
     await m.edit_text(f"🎵 Playing **{query}** successfully! (Stream connected)")
 
 if __name__ == "__main__":
-    # Start Flask server in background thread for Render keep-alive
-    t = Thread(target=run_web)
-    t.start()
+    # Start Flask server in background thread
+    web_thread = Thread(target=run_web)
+    web_thread.daemon = True
+    web_thread.start()
     
-    print("Bot is starting via main.py...")
+    print("Bot is starting successfully...")
+    # Start Pyrogram Bot in main thread
     app.run()
-                                     
+    
