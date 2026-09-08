@@ -118,6 +118,7 @@ if __name__ == "__main__":
     
     print("Starting Telegram Music Bot & PyTgCalls...")
     user_app.start()
-    call_py.start()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(call_py.start())
     app.run()
     
