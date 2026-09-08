@@ -5,7 +5,8 @@ from threading import Thread
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
-from pytgcalls.types import AudioPiped
+from pytgcalls.types.input_stream import InputAudioStream
+from pytgcalls.types.input_stream import AudioPiped
 import yt_dlp
 import config
 
@@ -108,18 +109,15 @@ def run_telegram_bot():
         await user_app.start()
         await call_py.start()
         await app.start()
-        # Keep the bot running without using idle()
         await asyncio.Event().wait()
         
     loop.run_until_complete(main())
 
 if __name__ == "__main__":
-    # Start Telegram bot in background thread so port opens immediately
     bot_thread = Thread(target=run_telegram_bot)
     bot_thread.daemon = True
     bot_thread.start()
     
-    # Run Flask web server on main thread to satisfy Render's port binding check
     port = int(os.environ.get("PORT", 10000))
     app_server.run(host='0.0.0.0', port=port)
-    
+                                                       
