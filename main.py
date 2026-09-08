@@ -9,12 +9,16 @@ from pytgcalls.types.input_stream import AudioPiped
 import yt_dlp
 import config
 
-# Flask Server for Render (Satisfies port binding requirement)
+# Flask Server for Render Port Binding
 app_server = Flask('')
 
 @app_server.route('/')
 def home():
     return "Music Bot & VC Streamer is active and running!"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app_server.run(host='0.0.0.0', port=port)
 
 # Pyrogram Bot Client Setup
 app = Client(
@@ -24,7 +28,7 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
-# PyTgCalls Assistant Userbot Setup using STRING_SESSION
+# PyTgCalls Assistant Userbot Setup
 user_app = Client(
     "Assistant",
     api_id=config.API_ID,
@@ -99,26 +103,20 @@ async def stop_command(client, message: Message):
     except Exception as e:
         await message.reply_text(f"❌ Error: `{str(e)}`")
 
-def run_telegram_bot():
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    
-    async def main():
-        print("Starting Telegram Music Bot & PyTgCalls...")
-        await user_app.start()
-        await call_py.start()
-        await app.start()
-        await asyncio.Event().wait()
-        
-    loop.run_until_complete(main())
+async def main():
+    print("Starting Telegram Bot & Assistant Userbot...")
+    await user_app.start()
+    await call_py.start()
+    await app.start()
+    print("Bot is successfully running and listening for messages!")
+    await asyncio.Event().wait()
 
 if __name__ == "__main__":
-    # Start Telegram Bot in background thread
-    bot_thread = Thread(target=run_telegram_bot)
-    bot_thread.daemon = True
-    bot_thread.start()
+    # Start Flask in a background thread
+    flask_thread = Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
     
-    # Run Flask Web Server on main thread
-    port = int(os.environ.get("PORT", 10000))
-    app_server.run(host='0.0.0.0', port=port)
+    # Run Telegram Bot on the main thread
+    asyncio.run(main())
     
