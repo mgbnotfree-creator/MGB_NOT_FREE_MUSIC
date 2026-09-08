@@ -11,6 +11,9 @@ from flask import Flask
 from threading import Thread
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pytgcalls import PyTgCalls
+from pytgcalls.types import AudioPiped
+import yt_dlp
 import config
 
 # Flask Server for Render Keep-Alive
@@ -18,13 +21,13 @@ app_server = Flask('')
 
 @app_server.route('/')
 def home():
-    return "Music Bot is active and running!"
+    return "Music Bot & VC Streamer is active!"
 
 def run_web():
     port = int(os.environ.get("PORT", 10000))
     app_server.run(host='0.0.0.0', port=port, use_reloader=False)
 
-# Pyrogram Bot Client Setup using config.py
+# Pyrogram Bot Client Setup
 app = Client(
     "MusicBot",
     api_id=config.API_ID,
@@ -32,9 +35,19 @@ app = Client(
     bot_token=config.BOT_TOKEN
 )
 
+# PyTgCalls Assistant Userbot Setup using STRING_SESSION
+from pyrogram import Client as UserClient
+user_app = UserClient(
+    "Assistant",
+    api_id=config.API_ID,
+    api_hash=config.API_HASH,
+    session_string=config.STRING_SESSION
+)
+
+call_py = PyTgCalls(user_app)
+
 @app.on_message(filters.command("start"))
 async def start_command(client, message: Message):
-    # Fancy Colorful-style Layout Buttons
     keyboard = InlineKeyboardMarkup(
         [
             [
@@ -43,18 +56,14 @@ async def start_command(client, message: Message):
             [
                 InlineKeyboardButton("🔵 Support Group", url=config.SUPPORT_GROUP),
                 InlineKeyboardButton("🔴 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
-            ],
-            [
-                InlineKeyboardButton("✨ Updates Channel", url=config.SUPPORT_GROUP)
             ]
         ]
     )
     
     welcome_text = (
-        "✨ **Welcome to MGB Music Bot!** ✨\n\n"
-        "🎵 I am active and ready to stream music in your groups.\n"
-        "🚀 Hosted successfully on Render.\n\n"
-        "👇 *Click a button below to interact:*"
+        "✨ **Welcome to MGB Voice Chat Music Bot!** ✨\n\n"
+        "🎵 I can stream high-quality audio directly into your Telegram Voice Chats.\n"
+        "🚀 Use `/play <song name>` in your group chat!\n"
     )
     
     await message.reply_text(welcome_text, reply_markup=keyboard)
@@ -62,30 +71,56 @@ async def start_command(client, message: Message):
 @app.on_message(filters.command("play"))
 async def play_command(client, message: Message):
     if len(message.command) < 2:
-        await message.reply_text(
-            "❌ **Wrong Usage!**\n\n"
-            "Please provide a song name along with the command.\n"
-            "Example: `/play Faded` or `/play Hindi Songs`"
-        )
+        await message.reply_text("❌ Please provide a song name! Example: `/play Faded`")
         return
     
+    if not message.chat.type in ["supergroup", "group"]:
+        await message.reply_text("❌ This command can only be used inside groups!")
+        return
+
     query = " ".join(message.command[1:])
-    m = await message.reply_text(f"🔎 **Searching for:** `{query}`...")
-    
-    # Simulate searching and playing feedback
-    await asyncio.sleep(1)
-    await m.edit_text(
-        f"🎵 **Playing:** `{query}`\n"
-        f"👤 **Requested by:** {message.from_user.mention}\n"
-        f"⚡ **Status:** Stream connected successfully!"
-    )
+    m = await message.reply_text(f"🔎 Searching for `{query}` on YouTube...")
+
+    try:
+        # Extract direct audio URL using yt-dlp
+        ydl_opts = {'format': 'bestaudio', 'noplaylist': True}
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch:{query}", download=False)
+            if 'entries' in info:
+                info = info['entries'][0]
+            stream_url = info['url']
+            song_title = info['title']
+        
+        # Join Voice Chat and Play Audio
+        await call_py.join_group_call(
+            message.chat.id,
+            AudioPiped(stream_url)
+        )
+        
+        await m.edit_text(
+            f"🎶 **Now Playing in Voice Chat:**\n"
+            f"📌 [{song_title}]({info.get('webpage_url', '')})\n"
+            f"👤 **Requested by:** {message.from_user.mention}"
+        )
+    except Exception as e:
+        await m.edit_text(f"❌ An error occurred: `{str(e)}`")
+
+@app.on_message(filters.command("stop"))
+async def stop_command(client, message: Message):
+    try:
+        await call_py.leave_group_call(message.chat.id)
+        await message.reply_text("⏹️ Music stopped and voice chat left successfully!")
+    except Exception as e:
+        await message.reply_text(f"❌ Error: `{str(e)}`")
 
 if __name__ == "__main__":
-    # Start Flask server in background thread
+    # Start Flask web server in background thread
     web_thread = Thread(target=run_web)
     web_thread.daemon = True
     web_thread.start()
     
-    print("Bot is starting up successfully...")
+    print("Starting Telegram Music Bot & PyTgCalls...")
+    user_app.start()
+    call_py.start()
     app.run()
     
