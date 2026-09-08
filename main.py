@@ -5,6 +5,7 @@ from threading import Thread
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
+from pytgcalls.types.input_stream import AudioPiped
 import yt_dlp
 import config
 
@@ -77,10 +78,9 @@ async def play_command(client, message: Message):
             stream_url = info['url']
             song_title = info['title']
         
-        # Updated play method for latest py-tgcalls
-        await call_py.play(
+        await call_py.join_group_call(
             message.chat.id,
-            stream_url
+            AudioPiped(stream_url)
         )
         
         await m.edit_text(
@@ -121,3 +121,4 @@ if __name__ == "__main__":
     # Run Flask Web Server on main thread
     port = int(os.environ.get("PORT", 10000))
     app_server.run(host='0.0.0.0', port=port)
+    
