@@ -117,6 +117,10 @@ if __name__ == "__main__":
     flask_thread.daemon = True
     flask_thread.start()
     
-    # Run Telegram Bot on the main thread
-    asyncio.run(main())
+    # Properly set up the event loop for the main thread
+    loop = asyncio.get_event_loop_policy().get_event_loop()
+    try:
+        loop.run_until_complete(main())
+    except KeyboardInterrupt:
+        pass
     
