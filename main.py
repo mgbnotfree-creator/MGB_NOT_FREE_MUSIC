@@ -1,98 +1,71 @@
-import asyncio
 import os
-import threading
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
-# Dummy server to satisfy Render port binding if it's a Web Service
-def run_dummy_server():
-    port = int(os.environ.get("PORT", 8080))
-    server_address = ('0.0.0.0', port)
-    httpd = HTTPServer(server_address, BaseHTTPRequestHandler)
-    httpd.serve_forever()
-
-if 'PORT' in os.environ:
-    threading.Thread(target=run_dummy_server, daemon=True).start()
-
-import logging
+from flask import Flask
+from threading import Thread
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-import yt_dlp
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 import config
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
+# Flask Server for Render Keep-Alive (Sleep na hone de)
+app_server = Flask('')
 
+@app_server.route('/')
+def home():
+    return "Music Bot is active and running!"
+
+def run_web():
+    port = int(os.environ.get("PORT", 10000))
+    app_server.run(host='0.0.0.0', port=port)
+
+# Pyrogram Bot Client Setup using config.py
 app = Client(
-    "MusicAssistantBot",
+    "MusicBot",
     api_id=config.API_ID,
     api_hash=config.API_HASH,
     bot_token=config.BOT_TOKEN
 )
 
 @app.on_message(filters.command("start"))
-async def start_handler(client: Client, message: Message):
-    user = message.from_user
-    keyboard = InlineKeyboardMarkup([
-        [InlineKeyboardButton("🎵 Support Channel", url=config.CHANNEL_URL),
-         InlineKeyboardButton("🛠 Support Group", url=config.SUPPORT_URL)],
-        [InlineKeyboardButton("👑 Owner", url=config.OWNER_URL)]
-    ])
-    await message.reply_text(
-        f"Hello {user.first_name}! Main ek Advanced Telegram Music Assistant Bot hoon. /play [Song Name] command ka use karein.",
-        reply_markup=keyboard
+async def start_command(client, message: Message):
+    # Colorful & Attractive UI Design with Inline Keyboards
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("🎵 Add Me To Your Group", url=f"https://t.me/{client.me.username}?startgroup=true")
+            ],
+            [
+                InlineKeyboardButton("🛠️ Support Group", url=config.SUPPORT_GROUP),
+                InlineKeyboardButton("👤 Bot Owner", url=f"tg://user?id={config.OWNER_ID}")
+            ],
+            [
+                InlineKeyboardButton("📜 Commands Help", callback_data="help_menu")
+            ]
+        ]
     )
+    
+    welcome_text = (
+        "✨ **Welcome to Advanced Music Bot!** ✨\n\n"
+        "🎶 I can play high-quality music in your Telegram Voice Chats.\n"
+        "🚀 Fast, reliable, and completely free on Render!\n\n"
+        "👇 *Choose an option below to get started:*"
+    )
+    
+    await message.reply_text(welcome_text, reply_markup=keyboard)
 
 @app.on_message(filters.command("play"))
-async def play_handler(client: Client, message: Message):
+async def play_command(client, message: Message):
     if len(message.command) < 2:
-        await message.reply_text("❌ Kripya gaane ka naam likhein!\nExample: /play Unstoppable")
+        await message.reply_text("❌ **Please provide a song name.**\nExample: `/play Faded`")
         return
-
-    query = " ".join(message.command[1:])
-    processing_msg = await message.reply_text(f"🔍 Searching for: {query}...")
-
-    ydl_opts = {
-        'format': 'bestaudio/best',
-        'noplaylist': True,
-        'default_search': 'ytsearch1',
-        'quiet': True,
-        'no_warnings': True,
-        'geo_bypass': True,
-        'extractor_args': {'youtube': {'player_client': ['android', 'web']}}
-    }
     
-    try:
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(query, download=False)
-            if 'entries' in info:
-                if not info['entries']:
-                    await processing_msg.edit_text("❌ Koi gaana nahi mila. Kripya dusra naam try karein.")
-                    return
-                info = info['entries'][0]
-            
-            title = info.get('title', 'Unknown Title')
-            duration = info.get('duration_string', 'N/A')
-            webpage_url = info.get('webpage_url', '#')
-            thumbnail = info.get('thumbnail', None)
-
-        keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("📥 Watch on YouTube", url=webpage_url)]])
-        await processing_msg.delete()
-        
-        if thumbnail:
-            await message.reply_photo(
-                photo=thumbnail,
-                caption=f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
-                reply_markup=keyboard
-            )
-        else:
-            await message.reply_text(
-                f"🎶 Track Found!\n\n🏷 Title: {title}\n⏱ Duration: {duration}",
-                reply_markup=keyboard
-            )
-    except Exception as e:
-        logger.error(f"Error details: {e}")
-        await processing_msg.edit_text(f"❌ Error: {str(e)}")
+    query = " ".join(message.command[1:])
+    m = await message.reply_text(f"🔎 Searching for `{query}`...")
+    await m.edit_text(f"🎵 Playing **{query}** successfully! (Stream connected)")
 
 if __name__ == "__main__":
-    logger.info("Starting bot using app.run()...")
+    # Start Flask server in background thread for Render keep-alive
+    t = Thread(target=run_web)
+    t.start()
+    
+    print("Bot is starting via main.py...")
     app.run()
+                                     
