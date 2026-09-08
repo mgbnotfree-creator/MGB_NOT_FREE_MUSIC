@@ -3,4 +3,5 @@ tgcrypto==1.2.5
 yt-dlp
 flask
 requests
-py-tgcalls[pyrogram]
+py-tgcalls
+
