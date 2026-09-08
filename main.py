@@ -2,7 +2,7 @@ import asyncio
 import os
 from flask import Flask
 from threading import Thread
-from pyrogram import Client, filters, idle
+from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
 from pytgcalls.types import AudioPiped
@@ -108,7 +108,8 @@ def run_telegram_bot():
         await user_app.start()
         await call_py.start()
         await app.start()
-        await idle()
+        # Keep the bot running without using idle()
+        await asyncio.Event().wait()
         
     loop.run_until_complete(main())
 
