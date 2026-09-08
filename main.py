@@ -2,8 +2,8 @@ import asyncio
 import os
 from flask import Flask
 from threading import Thread
-from pyrogram import Client, filters
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
+from pyrofork import Client, filters
+from pyrofork.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 from pytgcalls import PyTgCalls
 from pytgcalls.types.input_stream import AudioPiped
 import yt_dlp
