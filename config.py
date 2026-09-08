@@ -1,12 +1,11 @@
-API_ID = 26119956
-API_HASH = "2f89b4530b742a63430def3f53069ff5"
+import os
+
+# Aapke diye gaye credentials yahan configured hain
+API_ID = 31231226
+API_HASH = "c0ea79aaab758a2fe024007eb0ad3e46"
+STRING_SESSION = "BQHcjPoAECob4n4o-V0QkiHQEhy-zKW0dfo0DLcpNfENpLIoSOxWVwRPpXvDk-WwArtK3HxQkpWyc3w0gzmnhNcKqpL_rU2W_VgZBtHQw1XRySlCHNeariwZ4XdUf3h8ZgLMSfx_h3kbT9kYb83ieocDDzDUrZb9l2naf8C_9MWG_78QO2IVxv2Jkc5vY4Qt8JEBeZrWE_9iWzdDisi2Koro1cmi6Ez3ug6ganmIaVjXLO07WBH_ds-y87eURofnFUeTvQBBS6hCb4BWQVfO03LyH0nPc_1vyAAfd7qjLyAFnzxlLjY2Y-xOZ3zgXPWY_iz2mKWHeXjz6GUnl1dktvNG_7cStQAAAAHr3IdVAA"
 BOT_TOKEN = "8901320364:AAE3Jalo-7M4AjllSDY4xMUL-csBdz_XcxY"
-STRING_SESSION = "BQFsiEgAhQNgL742i1wS7GZsFkaJDYPmn8nWfTCT7rMngNBtwXj-9v0zcGwEDXt_szPf8oZXFWNFMDjqvwkhQaH_jCB9yFiNLj5LrxVnIFfvBDY93B2cvZwAUal-rw0yYHnGgsTqmMS0ph7qtk-CqeqqCeyJza5nSsuRkv1bKVoI0Dkzh2VsRua8_AOFnZN3RzCP0kTGAkFV6sOutqib8kM-YWi4CT0ZFDNynKlU8laLu72ehO8MtF3o6Ca4DEtlFiuXcwM7-CWZDZGIadQtnC2SrSVen6xCxEg_egbYM3TFCnF70t6Zi2ORfUd-qeBGO_nwH3M04dlWxPfypVGOAcDGo-wOgwAAAAIPu7_PAA"
+OWNER_ID = 8853897167
 LOG_GROUP_ID = -1004490671401
-OWNER_ID = 8252065621
 MONGO_DB_URI = "mongodb+srv://musicuser:music123@cluster0.qz8lbes.mongodb.net/?appName=Cluster0"
-API_TYPE = "audio"
-API_FORMAT = "mp3"
-SUPPORT_URL = "https://t.me/MGB_SUPPPOT"
-CHANNEL_URL = "https://t.me/Pocket_FM_Deals_Fast_Delivery"
-OWNER_URL = "https://t.me/MGB_SUPPPOT"
+SUPPORT_GROUP = "https://t.me/your_support_group"  # Apne support group ka link yahan daal dein
