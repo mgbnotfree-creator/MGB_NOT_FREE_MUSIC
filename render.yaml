@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: mgb-not-free-music
-    env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: python main.py
-    
