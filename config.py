@@ -1,18 +1,19 @@
 # ==========================================================
-# Copyright (c) 2026 VelocityBots 
+# Copyright (c) 2026 MGB Not Free Creator 
 # All Rights Reserved.
 #
-# Project      : VelocityBots API Telegram Music Bot
-# Powered By   : VelocityBots 
+# Project      : MGB Not Free Music Telegram Bot
+# Powered By   : MGB Not Free Creator
 # Type         : API Based Telegram Music Bot
 #
 # Bot          : @MUSIC1_NOT_FREE_BOT
 # Channel      : https://t.me/MUSIC_SUPPORT_69
-# GitHub       : https://mgbnotfree-creator/MGB_NOT_FREE_MUSIC
+# GitHub       : https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC
 #
 # Unauthorized copying, modification, or redistribution
 # of this source code without permission is prohibited.
 # ==========================================================
+
 from os import getenv
 from typing import List
 from dotenv import load_dotenv
@@ -37,14 +38,14 @@ class Config:
         self.QUEUE_LIMIT: int = int(getenv("QUEUE_LIMIT", "30"))
         self.PLAYLIST_LIMIT: int = int(getenv("PLAYLIST_LIMIT", "20"))
 
-        # Assistant Sessions @genstringbot
+        # Assistant Sessions
         self.SESSION1: str = getenv("STRING_SESSION", "")
         self.SESSION2: str = getenv("STRING_SESSION2", "")
         self.SESSION3: str = getenv("STRING_SESSION3", "")
 
         # Support Links
-        self.SUPPORT_CHANNEL: str = getenv("SUPPORT_CHANNEL", "https://t.me/junoxmusic_updates")
-        self.SUPPORT_CHAT: str = getenv("SUPPORT_CHAT", "https://t.me/junoxmusic")
+        self.SUPPORT_CHANNEL: str = getenv("SUPPORT_CHANNEL", "https://t.me/MUSIC_SUPPORT_69")
+        self.SUPPORT_CHAT: str = getenv("SUPPORT_CHAT", "https://t.me/MGB_SUPPPOT")
 
         # Excluded Chats
         self.EXCLUDED_CHATS: List[int] = self._parse_excluded_chats()
@@ -56,7 +57,7 @@ class Config:
         self.VIDEO_PLAY: bool = self._str_to_bool(getenv("VIDEO_PLAY", "True"))
         self.VIDEO_MAX_HEIGHT: int = self._parse_video_height()
 
-        # ArtistBots API @ArtistApibot
+        # API & Streaming Backend Configuration
         self.ARTISTBOTS_API_URL: str = getenv("ARTISTBOTS_API_URL", "http://api01.shrutibots.site")
         self.ARTISTBOTS_KEY: str = getenv("ARTISTBOTS_KEY", "ShrutiBotsBUvGvLipr11ROSbBMXuG")
         self.ENABLE_API: bool = self._str_to_bool(getenv("ENABLE_API", "True"))
