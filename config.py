@@ -6,7 +6,7 @@
 # Powered By   : VelocityBots 
 # Type         : API Based Telegram Music Bot
 #
-# Bot          : @JunoXmusic_Robot
+# Bot          : @MUSIC1_NOT_FREE_BOT
 # Channel      : https://t.me/MUSIC_SUPPORT_69
 # GitHub       : mgbnotfree-creator/MGB_NOT_FREE_MUSIC
 #
