@@ -1,3 +1,18 @@
+# ==========================================================
+# Copyright (c) 2026 MGB Not Free Creator 
+# All Rights Reserved.
+#
+# Project      : MGB Not Free Music Telegram Bot
+# Powered By   : MGB Not Free Creator
+# Type         : API Based Telegram Music Bot
+#
+# Bot          : @MUSIC1_NOT_FREE_BOT
+# Channel      : https://t.me/MUSIC_SUPPORT_69
+# GitHub       : https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC
+#
+# Unauthorized copying, modification, or redistribution
+# of this source code without permission is prohibited.
+# ==========================================================
 #!/bin/bash 
 
 pprint() {
@@ -86,7 +101,7 @@ EOF
 
 
 clear
-pprint "Welcome to the ˹ᴇʟᴇᴠᴇɴʏᴛꜱ ᴍᴜꜱɪᴄ˼ Installation Setup\n\n" "cmagenta"
+pprint "Welcome to the MGB Not Free Music Installation Setup\n\n" "cmagenta"
 sleep 1
 
 update
@@ -95,7 +110,7 @@ install_pkg ffmpeg ffmpeg unzip
 install_deno
 install_py
 
-pprint "\n˹ᴇʟᴇᴠᴇɴʏᴛꜱ ᴍᴜꜱɪᴄ˼ Installation Completed.\n" "cgreen"
+pprint "\nMGB Not Free Music Installation Completed.\n" "cgreen"
 sleep 2
 clear
 
