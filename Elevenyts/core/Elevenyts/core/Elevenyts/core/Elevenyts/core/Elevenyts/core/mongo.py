@@ -1,17 +1,401 @@
 # ==========================================================
-# Copyright (c) 2026 VelocityBots 
+# Copyright (c) 2026 MGB Not Free Creator 
 # All Rights Reserved.
 #
-# Project      : VelocityBots API Telegram Music Bot
-# Powered By   : VelocityBots 
+# Project      : MGB Not Free Music Telegram Bot
+# Powered By   : MGB Not Free Creator
 # Type         : API Based Telegram Music Bot
 #
 # Bot          : @MUSIC1_NOT_FREE_BOT
 # Channel      : https://t.me/MUSIC_SUPPORT_69
-# GitHub       : https://mgbnotfree-creator/MGB_NOT_FREE_MUSIC
+# GitHub       : https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC
 #
 # Unauthorized copying, modification, or redistribution
 # of this source code without permission is prohibited.
 # ==========================================================
-import base64
-exec(base64.b64decode("IyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiMgQ29weXJpZ2h0IChjKSAyMDI2IFZlbG9jaXR5Qm90cwojIEFsbCBSaWdodHMgUmVzZXJ2ZWQuCiMKIyBQcm9qZWN0ICAgICAgOiBWZWxvY2l0eUJvdHMg6q2ZIE11c2ljIFRlbGVncmFtIEJvdAojIFBvd2VyZWQgQnkgICA6IEFydGlzdAojIFR5cGUgICAgICAgICA6IEFQSSBCYXNlZCBUZWxlZ3JhbSBNdXNpYyBCb3QKIwojIEJvdCAgICAgICAgICA6IEBBcnRpc3RBcGlib3QKIyBDaGFubmVsICAgICAgOiBodHRwczovL3QubWUvYXJ0aXN0Ym90cwojIEdpdEh1YiAgICAgICA6IGh0dHBzOi8vZ2l0aHViLmNvbS9lbGV2ZW55dHMKIwojIFVuYXV0aG9yaXplZCBjb3B5aW5nLCBtb2RpZmljYXRpb24sIG9yIHJlZGlzdHJpYnV0aW9uCiMgb2YgdGhpcyBzb3VyY2UgY29kZSB3aXRob3V0IHBlcm1pc3Npb24gaXMgcHJvaGliaXRlZC4KIyA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09Cgpmcm9tIHJhbmRvbSBpbXBvcnQgcmFuZGludApmcm9tIHRpbWUgaW1wb3J0IHRpbWUKaW1wb3J0IGFzeW5jaW8KaW1wb3J0IGxvZ2dpbmcKCmZyb20gcHltb25nbyBpbXBvcnQgQXN5bmNNb25nb0NsaWVudAoKZnJvbSBFbGV2ZW55dHMgaW1wb3J0IGNvbmZpZywgbG9nZ2VyLCB1c2VyYm90CgoKIyBTdXBwcmVzcyBub24tY3JpdGljYWwgTW9uZ29EQiBiYWNrZ3JvdW5kIHRhc2sgZXJyb3JzCmNsYXNzIE1vbmdvQmFja2dyb3VuZEZpbHRlcihsb2dnaW5nLkZpbHRlcik6CiAgICBkZWYgZmlsdGVyKHNlbGYsIHJlY29yZCk6CiAgICAgICAgIyBTdXBwcmVzcyBBdXRvUmVjb25uZWN0IGFuZCBfT3BlcmF0aW9uQ2FuY2VsbGVkIGJhY2tncm91bmQgZXJyb3JzICh0aGVzZSBhcmUgaGFuZGxlZCBpbnRlcm5hbGx5KQogICAgICAgIG1zZyA9IHJlY29yZC5nZXRNZXNzYWdlKCkKICAgICAgICByZXR1cm4gbm90ICgKICAgICAgICAgICAgJ01vbmdvQ2xpZW50IGJhY2tncm91bmQgdGFzayBlbmNvdW50ZXJlZCBhbiBlcnJvcicgaW4gbXNnIG9yCiAgICAgICAgICAgICgnQXV0b1JlY29ubmVjdCcgaW4gbXNnIGFuZCAnYmFja2dyb3VuZCB0YXNrJyBpbiBtc2cpIG9yCiAgICAgICAgICAgICgnX09wZXJhdGlvbkNhbmNlbGxlZCcgaW4gbXNnIGFuZCAnYmFja2dyb3VuZCB0YXNrJyBpbiBtc2cpCiAgICAgICAgKQoKbG9nZ2luZy5nZXRMb2dnZXIoJ3B5bW9uZ28uY2xpZW50JykuYWRkRmlsdGVyKE1vbmdvQmFja2dyb3VuZEZpbHRlcigpKQoKCmNsYXNzIE1vbmdvREI6CiAgICBkZWYgX19pbml0X18oc2VsZik6CiAgICAgICAgIiIiCiAgICAgICAgSW5pdGlhbGl6ZSB0aGUgTW9uZ29EQiBjb25uZWN0aW9uLgogICAgICAgICIiIgogICAgICAgIHNlbGYubW9uZ28gPSBBc3luY01vbmdvQ2xpZW50KAogICAgICAgICAgICBjb25maWcuTU9OR09fVVJMLAogICAgICAgICAgICBzZXJ2ZXJTZWxlY3Rpb25UaW1lb3V0TVM9MTI1MDAsCiAgICAgICAgICAgIGNvbm5lY3RUaW1lb3V0TVM9MjAwMDAsCiAgICAgICAgICAgIHNvY2tldFRpbWVvdXRNUz0yMDAwMCwKICAgICAgICAgICAgbWF4UG9vbFNpemU9MjAsICAjIFJlZHVjZWQgZnJvbSA1MCB0byBwcmV2ZW50IHRvbyBtYW55IG9wZW4gY29ubmVjdGlvbnMKICAgICAgICAgICAgbWluUG9vbFNpemU9NSwgICAjIFJlZHVjZWQgZnJvbSAxMCB0byBwcmV2ZW50IHRvbyBtYW55IG9wZW4gY29ubmVjdGlvbnMKICAgICAgICAgICAgbWF4SWRsZVRpbWVNUz0zMDAwMCwgICMgUmVkdWNlZCBmcm9tIDQ1MDAwIC0gY2xvc2UgaWRsZSBjb25uZWN0aW9ucyBmYXN0ZXIKICAgICAgICAgICAgd2FpdFF1ZXVlVGltZW91dE1TPTEwMDAwLAogICAgICAgICAgICByZXRyeVdyaXRlcz1UcnVlLAogICAgICAgICAgICByZXRyeVJlYWRzPVRydWUKICAgICAgICApCiAgICAgICAgc2VsZi5kYiA9IHNlbGYubW9uZ28uRWxldmVueXRzCgogICAgICAgIHNlbGYuYWRtaW5fbGlzdCA9IHt9ICAjIENhY2hlIGFkbWluIGxpc3RzCiAgICAgICAgc2VsZi5hZG1pbl9jYWNoZV90aW1lID0ge30gICMgVHJhY2sgY2FjaGUgZnJlc2huZXNzCiAgICAgICAgc2VsZi5hY3RpdmVfY2FsbHMgPSB7fQogICAgICAgIHNlbGYuYmxhY2tsaXN0ZWQgPSBbXQogICAgICAgIHNlbGYubm90aWZpZWQgPSBbXQogICAgICAgIHNlbGYuY2FjaGUgPSBzZWxmLmRiLmNhY2hlCiAgICAgICAgc2VsZi5sb2dnZXIgPSBGYWxzZQogICAgICAgIHNlbGYubWFpbnRlbmFuY2UgPSBGYWxzZSAgIyBNYWludGVuYW5jZSBtb2RlIHN0YXR1cwogICAgICAgIHNlbGYuZ2Jhbm5lZF91c2VycyA9IFtdICAjIEdsb2JhbGx5IGJhbm5lZCB1c2VycwogICAgICAgIHNlbGYudnBsYXlfZW5hYmxlZCA9IGNvbmZpZy5WSURFT19QTEFZCgogICAgICAgIHNlbGYuYXNzaXN0YW50ID0ge30KICAgICAgICBzZWxmLmFzc2lzdGFudGRiID0gc2VsZi5kYi5hc3Npc3RhbnQKCiAgICAgICAgc2VsZi5hdXRoID0ge30KICAgICAgICBzZWxmLmF1dGhkYiA9IHNlbGYuZGIuYXV0aAoKICAgICAgICBzZWxmLmNoYXRzID0gW10KICAgICAgICBzZWxmLmNoYXRzZGIgPSBzZWxmLmRiLmNoYXRzCgogICAgICAgIHNlbGYubGFuZyA9IHt9CiAgICAgICAgc2VsZi5sYW5nZGIgPSBzZWxmLmRiLmxhbmcKCiAgICAgICAgc2VsZi5wbGF5X21vZGUgPSBbXQogICAgICAgIHNlbGYucGxheW1vZGVkYiA9IHNlbGYuZGIucGxheQoKICAgICAgICBzZWxmLmZvcmNlX21vZGUgPSBbXQogICAgICAgIHNlbGYuZm9yY2Vtb2RlZGIgPSBzZWxmLmRiLmZvcmNlbW9kZQoKICAgICAgICBzZWxmLnVzZXJzID0gW10KICAgICAgICBzZWxmLnVzZXJzZGIgPSBzZWxmLmRiLnVzZXJzCgogICAgYXN5bmMgZGVmIGNvbm5lY3Qoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiJDaGVjayBpZiB3ZSBjYW4gY29ubmVjdCB0byB0aGUgZGF0YWJhc2Ugd2l0aCBleHBvbmVudGlhbCBiYWNrb2ZmIHJldHJ5IGxvZ2ljLgoKICAgICAgICBSYWlzZXM6CiAgICAgICAgICAgIFN5c3RlbUV4aXQ6IElmIHRoZSBjb25uZWN0aW9uIHRvIHRoZSBkYXRhYmFzZSBmYWlscyBhZnRlciByZXRyaWVzLgogICAgICAgICIiIgogICAgICAgIG1heF9yZXRyaWVzID0gMwogICAgICAgIHJldHJ5X2RlbGF5ID0gNSAgIyBJbml0aWFsIGRlbGF5IGluIHNlY29uZHMKICAgICAgICAKICAgICAgICBmb3IgYXR0ZW1wdCBpbiByYW5nZSgxLCBtYXhfcmV0cmllcyArIDEpOgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBzdGFydCA9IHRpbWUoKQogICAgICAgICAgICAgICAgYXdhaXQgc2VsZi5tb25nby5hZG1pbi5jb21tYW5kKCJwaW5nIikKICAgICAgICAgICAgICAgIGxvZ2dlci5pbmZvKAogICAgICAgICAgICAgICAgICAgIGYi4pyFIERhdGFiYXNlIGNvbm5lY3Rpb24gc3VjY2Vzc2Z1bC4gKHt0aW1lKCkgLSBzdGFydDouMmZ9cykiKQoKICAgICAgICAgICAgICAgICMgQ3JlYXRlIGluZGV4ZXMgZm9yIGZhc3RlciBxdWVyaWVzCiAgICAgICAgICAgICAgICBhd2FpdCBzZWxmLmF1dGhkYi5jcmVhdGVfaW5kZXgoIl9pZCIpCiAgICAgICAgICAgICAgICBhd2FpdCBzZWxmLmxhbmdkYi5jcmVhdGVfaW5kZXgoIl9pZCIpCiAgICAgICAgICAgICAgICBhd2FpdCBzZWxmLmNhY2hlLmNyZWF0ZV9pbmRleCgiX2lkIikKCiAgICAgICAgICAgICAgICBhd2FpdCBzZWxmLmxvYWRfY2FjaGUoKQogICAgICAgICAgICAgICAgcmV0dXJuICAjIFN1Y2Nlc3MsIGV4aXQgdGhlIGZ1bmN0aW9uCiAgICAgICAgICAgIGV4Y2VwdCBFeGNlcHRpb24gYXMgZToKICAgICAgICAgICAgICAgIGlmIGF0dGVtcHQgPCBtYXhfcmV0cmllczoKICAgICAgICAgICAgICAgICAgICAjIEV4cG9uZW50aWFsIGJhY2tvZmY6IDVzLCAxMHMsIDIwcwogICAgICAgICAgICAgICAgICAgIHdhaXRfdGltZSA9IHJldHJ5X2RlbGF5ICogKDIgKiogKGF0dGVtcHQgLSAxKSkKICAgICAgICAgICAgICAgICAgICBsb2dnZXIud2FybmluZyhmIkRhdGFiYXNlIGNvbm5lY3Rpb24gYXR0ZW1wdCB7YXR0ZW1wdH0ve21heF9yZXRyaWVzfSBmYWlsZWQ6IHt0eXBlKGUpLl9fbmFtZV9ffS4gUmV0cnlpbmcgaW4ge3dhaXRfdGltZX1zLi4uIikKICAgICAgICAgICAgICAgICAgICBhd2FpdCBhc3luY2lvLnNsZWVwKHdhaXRfdGltZSkKICAgICAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICAgICAgcmFpc2UgU3lzdGVtRXhpdCgKICAgICAgICAgICAgICAgICAgICAgICAgZiJEYXRhYmFzZSBjb25uZWN0aW9uIGZhaWxlZCBhZnRlciB7bWF4X3JldHJpZXN9IGF0dGVtcHRzOiB7dHlwZShlKS5fX25hbWVfX30iKSBmcm9tIGUKCiAgICBhc3luYyBkZWYgY2xvc2Uoc2VsZikgLT4gTm9uZToKICAgICAgICAiIiJDbG9zZSB0aGUgY29ubmVjdGlvbiB0byB0aGUgZGF0YWJhc2UuIiIiCiAgICAgICAgYXdhaXQgc2VsZi5tb25nby5jbG9zZSgpCiAgICAgICAgbG9nZ2VyLmluZm8oIkRhdGFiYXNlIGNvbm5lY3Rpb24gY2xvc2VkLiIpCgogICAgIyBDQUNIRQogICAgYXN5bmMgZGVmIGdldF9jYWxsKHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gYm9vbDoKICAgICAgICByZXR1cm4gY2hhdF9pZCBpbiBzZWxmLmFjdGl2ZV9jYWxscwoKICAgIGFzeW5jIGRlZiBhZGRfY2FsbChzZWxmLCBjaGF0X2lkOiBpbnQpIC0+IE5vbmU6CiAgICAgICAgc2VsZi5hY3RpdmVfY2FsbHNbY2hhdF9pZF0gPSAxCgogICAgYXN5bmMgZGVmIHJlbW92ZV9jYWxsKHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gTm9uZToKICAgICAgICBzZWxmLmFjdGl2ZV9jYWxscy5wb3AoY2hhdF9pZCwgTm9uZSkKCiAgICBhc3luYyBkZWYgcGxheWluZyhzZWxmLCBjaGF0X2lkOiBpbnQsIHBhdXNlZDogYm9vbCA9IE5vbmUpIC0+IGJvb2wgfCBOb25lOgogICAgICAgIGlmIHBhdXNlZCBpcyBub3QgTm9uZToKICAgICAgICAgICAgc2VsZi5hY3RpdmVfY2FsbHNbY2hhdF9pZF0gPSBpbnQobm90IHBhdXNlZCkKICAgICAgICByZXR1cm4gYm9vbChzZWxmLmFjdGl2ZV9jYWxsc1tjaGF0X2lkXSkKCiAgICBhc3luYyBkZWYgZ2V0X2FkbWlucyhzZWxmLCBjaGF0X2lkOiBpbnQsIHJlbG9hZDogYm9vbCA9IEZhbHNlKSAtPiBsaXN0W2ludF06CiAgICAgICAgZnJvbSBFbGV2ZW55dHMuaGVscGVycy5fYWRtaW5zIGltcG9ydCByZWxvYWRfYWRtaW5zCgogICAgICAgICMgKipQRVJGT1JNQU5DRSBGSVgqKjogSW5jcmVhc2VkIGNhY2hlIGZyb20gNSB0byAxNSBtaW51dGVzCiAgICAgICAgIyBSZWR1Y2VzIE1vbmdvREIgcXVlcmllcyBkdXJpbmcgcGVhayBsb2FkICgxNS0yMCBjb25jdXJyZW50IHN0cmVhbXMpCiAgICAgICAgY3VycmVudF90aW1lID0gdGltZSgpCiAgICAgICAgY2FjaGVfYWdlID0gY3VycmVudF90aW1lIC0gc2VsZi5hZG1pbl9jYWNoZV90aW1lLmdldChjaGF0X2lkLCAwKQoKICAgICAgICBpZiBjaGF0X2lkIG5vdCBpbiBzZWxmLmFkbWluX2xpc3Qgb3IgcmVsb2FkIG9yIGNhY2hlX2FnZSA+IDkwMDogICMgMTUgbWludXRlcwogICAgICAgICAgICBzZWxmLmFkbWluX2xpc3RbY2hhdF9pZF0gPSBhd2FpdCByZWxvYWRfYWRtaW5zKGNoYXRfaWQpCiAgICAgICAgICAgIHNlbGYuYWRtaW5fY2FjaGVfdGltZVtjaGF0X2lkXSA9IGN1cnJlbnRfdGltZQogICAgICAgIHJldHVybiBzZWxmLmFkbWluX2xpc3RbY2hhdF9pZF0KCiAgICAjIEFVVEggTUVUSE9EUwogICAgYXN5bmMgZGVmIF9nZXRfYXV0aChzZWxmLCBjaGF0X2lkOiBpbnQpIC0+IHNldFtpbnRdOgogICAgICAgIGlmIGNoYXRfaWQgbm90IGluIHNlbGYuYXV0aDoKICAgICAgICAgICAgZG9jID0gYXdhaXQgc2VsZi5hdXRoZGIuZmluZF9vbmUoeyJfaWQiOiBjaGF0X2lkfSkgb3Ige30KICAgICAgICAgICAgc2VsZi5hdXRoW2NoYXRfaWRdID0gc2V0KGRvYy5nZXQoInVzZXJfaWRzIiwgW10pKQogICAgICAgIHJldHVybiBzZWxmLmF1dGhbY2hhdF9pZF0KCiAgICBhc3luYyBkZWYgaXNfYXV0aChzZWxmLCBjaGF0X2lkOiBpbnQsIHVzZXJfaWQ6IGludCkgLT4gYm9vbDoKICAgICAgICByZXR1cm4gdXNlcl9pZCBpbiBhd2FpdCBzZWxmLl9nZXRfYXV0aChjaGF0X2lkKQoKICAgIGFzeW5jIGRlZiBhZGRfYXV0aChzZWxmLCBjaGF0X2lkOiBpbnQsIHVzZXJfaWQ6IGludCkgLT4gTm9uZToKICAgICAgICB1c2VycyA9IGF3YWl0IHNlbGYuX2dldF9hdXRoKGNoYXRfaWQpCiAgICAgICAgaWYgdXNlcl9pZCBub3QgaW4gdXNlcnM6CiAgICAgICAgICAgIHVzZXJzLmFkZCh1c2VyX2lkKQogICAgICAgICAgICBhd2FpdCBzZWxmLmF1dGhkYi51cGRhdGVfb25lKAogICAgICAgICAgICAgICAgeyJfaWQiOiBjaGF0X2lkfSwgeyIkYWRkVG9TZXQiOiB7InVzZXJfaWRzIjogdXNlcl9pZH19LCB1cHNlcnQ9VHJ1ZQogICAgICAgICAgICApCgogICAgYXN5bmMgZGVmIHJtX2F1dGgoc2VsZiwgY2hhdF9pZDogaW50LCB1c2VyX2lkOiBpbnQpIC0+IE5vbmU6CiAgICAgICAgdXNlcnMgPSBhd2FpdCBzZWxmLl9nZXRfYXV0aChjaGF0X2lkKQogICAgICAgIGlmIHVzZXJfaWQgaW4gdXNlcnM6CiAgICAgICAgICAgIHVzZXJzLmRpc2NhcmQodXNlcl9pZCkKICAgICAgICAgICAgYXdhaXQgc2VsZi5hdXRoZGIudXBkYXRlX29uZSgKICAgICAgICAgICAgICAgIHsiX2lkIjogY2hhdF9pZH0sIHsiJHB1bGwiOiB7InVzZXJfaWRzIjogdXNlcl9pZH19CiAgICAgICAgICAgICkKCiAgICAjIEFTU0lTVEFOVCBNRVRIT0RTCiAgICBhc3luYyBkZWYgc2V0X2Fzc2lzdGFudChzZWxmLCBjaGF0X2lkOiBpbnQpIC0+IGludDoKICAgICAgICBudW0gPSByYW5kaW50KDEsIGxlbih1c2VyYm90LmNsaWVudHMpKQogICAgICAgIGF3YWl0IHNlbGYuYXNzaXN0YW50ZGIudXBkYXRlX29uZSgKICAgICAgICAgICAgeyJfaWQiOiBjaGF0X2lkfSwKICAgICAgICAgICAgeyIkc2V0IjogeyJudW0iOiBudW19fSwKICAgICAgICAgICAgdXBzZXJ0PVRydWUsCiAgICAgICAgKQogICAgICAgIHNlbGYuYXNzaXN0YW50W2NoYXRfaWRdID0gbnVtCiAgICAgICAgcmV0dXJuIG51bQoKICAgIGFzeW5jIGRlZiBnZXRfYXNzaXN0YW50KHNlbGYsIGNoYXRfaWQ6IGludCk6CiAgICAgICAgZnJvbSBFbGV2ZW55dHMgaW1wb3J0IHR1bmUKCiAgICAgICAgaWYgY2hhdF9pZCBub3QgaW4gc2VsZi5hc3Npc3RhbnQ6CiAgICAgICAgICAgIGRvYyA9IGF3YWl0IHNlbGYuYXNzaXN0YW50ZGIuZmluZF9vbmUoeyJfaWQiOiBjaGF0X2lkfSkKICAgICAgICAgICAgbnVtID0gZG9jWyJudW0iXSBpZiBkb2MgZWxzZSBhd2FpdCBzZWxmLnNldF9hc3Npc3RhbnQoY2hhdF9pZCkKICAgICAgICAgICAgc2VsZi5hc3Npc3RhbnRbY2hhdF9pZF0gPSBudW0KCiAgICAgICAgIyBDaGVjayBpZiBhc3NpZ25lZCBhc3Npc3RhbnQgaXMgb3V0IG9mIHJhbmdlIChlLmcuLCBhc3Npc3RhbnQgd2FzIHJlbW92ZWQpCiAgICAgICAgaWYgc2VsZi5hc3Npc3RhbnRbY2hhdF9pZF0gPiBsZW4odXNlcmJvdC5jbGllbnRzKToKICAgICAgICAgICAgIyBSZWFzc2lnbiB0byBhIHZhbGlkIGFzc2lzdGFudAogICAgICAgICAgICBudW0gPSBhd2FpdCBzZWxmLnNldF9hc3Npc3RhbnQoY2hhdF9pZCkKICAgICAgICAgICAgc2VsZi5hc3Npc3RhbnRbY2hhdF9pZF0gPSBudW0KCiAgICAgICAgcmV0dXJuIHR1bmUuY2xpZW50c1tzZWxmLmFzc2lzdGFudFtjaGF0X2lkXSAtIDFdCgogICAgYXN5bmMgZGVmIGdldF9jbGllbnQoc2VsZiwgY2hhdF9pZDogaW50KToKICAgICAgICBpZiBjaGF0X2lkIG5vdCBpbiBzZWxmLmFzc2lzdGFudDoKICAgICAgICAgICAgYXdhaXQgc2VsZi5nZXRfYXNzaXN0YW50KGNoYXRfaWQpCiAgICAgICAgCiAgICAgICAgIyBDaGVjayBpZiBhc3NpZ25lZCBhc3Npc3RhbnQgaXMgb3V0IG9mIHJhbmdlCiAgICAgICAgaWYgc2VsZi5hc3Npc3RhbnRbY2hhdF9pZF0gPiBsZW4odXNlcmJvdC5jbGllbnRzKToKICAgICAgICAgICAgIyBSZWFzc2lnbiB0byBhIHZhbGlkIGFzc2lzdGFudAogICAgICAgICAgICBhd2FpdCBzZWxmLnNldF9hc3Npc3RhbnQoY2hhdF9pZCkKICAgICAgICAKICAgICAgICAjIEdldCBhdmFpbGFibGUgY2xpZW50cyBkeW5hbWljYWxseSBiYXNlZCBvbiB3aGF0J3MgYWN0dWFsbHkgcnVubmluZwogICAgICAgIGF2YWlsYWJsZV9jbGllbnRzID0ge30KICAgICAgICBpZiBoYXNhdHRyKHVzZXJib3QsICdvbmUnKSBhbmQgdXNlcmJvdC5vbmUgaW4gdXNlcmJvdC5jbGllbnRzOgogICAgICAgICAgICBhdmFpbGFibGVfY2xpZW50c1sxXSA9IHVzZXJib3Qub25lCiAgICAgICAgaWYgaGFzYXR0cih1c2VyYm90LCAndHdvJykgYW5kIHVzZXJib3QudHdvIGluIHVzZXJib3QuY2xpZW50czoKICAgICAgICAgICAgYXZhaWxhYmxlX2NsaWVudHNbMl0gPSB1c2VyYm90LnR3bwogICAgICAgIGlmIGhhc2F0dHIodXNlcmJvdCwgJ3RocmVlJykgYW5kIHVzZXJib3QudGhyZWUgaW4gdXNlcmJvdC5jbGllbnRzOgogICAgICAgICAgICBhdmFpbGFibGVfY2xpZW50c1szXSA9IHVzZXJib3QudGhyZWUKICAgICAgICAKICAgICAgICByZXR1cm4gYXZhaWxhYmxlX2NsaWVudHMuZ2V0KHNlbGYuYXNzaXN0YW50W2NoYXRfaWRdKQoKICAgICMgQkxBQ0tMSVNUIE1FVEhPRFMKICAgIGFzeW5jIGRlZiBhZGRfYmxhY2tsaXN0KHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gTm9uZToKICAgICAgICBpZiBzdHIoY2hhdF9pZCkuc3RhcnRzd2l0aCgiLSIpOgogICAgICAgICAgICBzZWxmLmJsYWNrbGlzdGVkLmFwcGVuZChjaGF0X2lkKQogICAgICAgICAgICByZXR1cm4gYXdhaXQgc2VsZi5jYWNoZS51cGRhdGVfb25lKAogICAgICAgICAgICAgICAgeyJfaWQiOiAiYmxfY2hhdHMifSwgeyIkYWRkVG9TZXQiOiB7ImNoYXRfaWRzIjogY2hhdF9pZH19LCB1cHNlcnQ9VHJ1ZQogICAgICAgICAgICApCiAgICAgICAgYXdhaXQgc2VsZi5jYWNoZS51cGRhdGVfb25lKAogICAgICAgICAgICB7Il9pZCI6ICJibF91c2VycyJ9LCB7IiRhZGRUb1NldCI6IHsidXNlcl9pZHMiOiBjaGF0X2lkfX0sIHVwc2VydD1UcnVlCiAgICAgICAgKQoKICAgIGFzeW5jIGRlZiBkZWxfYmxhY2tsaXN0KHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gTm9uZToKICAgICAgICBpZiBzdHIoY2hhdF9pZCkuc3RhcnRzd2l0aCgiLSIpOgogICAgICAgICAgICBzZWxmLmJsYWNrbGlzdGVkLnJlbW92ZShjaGF0X2lkKQogICAgICAgICAgICByZXR1cm4gYXdhaXQgc2VsZi5jYWNoZS51cGRhdGVfb25lKAogICAgICAgICAgICAgICAgeyJfaWQiOiAiYmxfY2hhdHMifSwKICAgICAgICAgICAgICAgIHsiJHB1bGwiOiB7ImNoYXRfaWRzIjogY2hhdF9pZH19LAogICAgICAgICAgICApCiAgICAgICAgYXdhaXQgc2VsZi5jYWNoZS51cGRhdGVfb25lKAogICAgICAgICAgICB7Il9pZCI6ICJibF91c2VycyJ9LAogICAgICAgICAgICB7IiRwdWxsIjogeyJ1c2VyX2lkcyI6IGNoYXRfaWR9fSwKICAgICAgICApCgogICAgYXN5bmMgZGVmIGdldF9ibGFja2xpc3RlZChzZWxmLCBjaGF0OiBib29sID0gRmFsc2UpIC0+IGxpc3RbaW50XToKICAgICAgICBpZiBjaGF0OgogICAgICAgICAgICBpZiBub3Qgc2VsZi5ibGFja2xpc3RlZDoKICAgICAgICAgICAgICAgIGRvYyA9IGF3YWl0IHNlbGYuY2FjaGUuZmluZF9vbmUoeyJfaWQiOiAiYmxfY2hhdHMifSkKICAgICAgICAgICAgICAgIHNlbGYuYmxhY2tsaXN0ZWQuZXh0ZW5kKGRvYy5nZXQoImNoYXRfaWRzIiwgW10pIGlmIGRvYyBlbHNlIFtdKQogICAgICAgICAgICByZXR1cm4gc2VsZi5ibGFja2xpc3RlZAogICAgICAgIGRvYyA9IGF3YWl0IHNlbGYuY2FjaGUuZmluZF9vbmUoeyJfaWQiOiAiYmxfdXNlcnMifSkKICAgICAgICByZXR1cm4gZG9jLmdldCgidXNlcl9pZHMiLCBbXSkgaWYgZG9jIGVsc2UgW10KCiAgICAjIENIQVQgTUVUSE9EUwogICAgYXN5bmMgZGVmIGlzX2NoYXQoc2VsZiwgY2hhdF9pZDogaW50KSAtPiBib29sOgogICAgICAgIHJldHVybiBjaGF0X2lkIGluIHNlbGYuY2hhdHMKCiAgICBhc3luYyBkZWYgYWRkX2NoYXQoc2VsZiwgY2hhdF9pZDogaW50KSAtPiBOb25lOgogICAgICAgIGlmIG5vdCBhd2FpdCBzZWxmLmlzX2NoYXQoY2hhdF9pZCk6CiAgICAgICAgICAgIHNlbGYuY2hhdHMuYXBwZW5kKGNoYXRfaWQpCiAgICAgICAgICAgIGF3YWl0IHNlbGYuY2hhdHNkYi5pbnNlcnRfb25lKHsiX2lkIjogY2hhdF9pZH0pCgogICAgYXN5bmMgZGVmIHJtX2NoYXQoc2VsZiwgY2hhdF9pZDogaW50KSAtPiBOb25lOgogICAgICAgIGlmIGF3YWl0IHNlbGYuaXNfY2hhdChjaGF0X2lkKToKICAgICAgICAgICAgc2VsZi5jaGF0cy5yZW1vdmUoY2hhdF9pZCkKICAgICAgICAgICAgYXdhaXQgc2VsZi5jaGF0c2RiLmRlbGV0ZV9vbmUoeyJfaWQiOiBjaGF0X2lkfSkKCiAgICBhc3luYyBkZWYgZ2V0X2NoYXRzKHNlbGYpIC0+IGxpc3Q6CiAgICAgICAgaWYgbm90IHNlbGYuY2hhdHM6CiAgICAgICAgICAgIHNlbGYuY2hhdHMuZXh0ZW5kKFtjaGF0WyJfaWQiXSBhc3luYyBmb3IgY2hhdCBpbiBzZWxmLmNoYXRzZGIuZmluZCgpXSkKICAgICAgICByZXR1cm4gc2VsZi5jaGF0cwoKICAgICMgTEFOR1VBR0UgTUVUSE9EUwogICAgYXN5bmMgZGVmIHNldF9sYW5nKHNlbGYsIGNoYXRfaWQ6IGludCwgbGFuZ19jb2RlOiBzdHIpOgogICAgICAgIGF3YWl0IHNlbGYubGFuZ2RiLnVwZGF0ZV9vbmUoCiAgICAgICAgICAgIHsiX2lkIjogY2hhdF9pZH0sCiAgICAgICAgICAgIHsiJHNldCI6IHsibGFuZyI6IGxhbmdfY29kZX19LAogICAgICAgICAgICB1cHNlcnQ9VHJ1ZSwKICAgICAgICApCiAgICAgICAgc2VsZi5sYW5nW2NoYXRfaWRdID0gbGFuZ19jb2RlCgogICAgYXN5bmMgZGVmIGdldF9sYW5nKHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gc3RyOgogICAgICAgIGlmIGNoYXRfaWQgbm90IGluIHNlbGYubGFuZzoKICAgICAgICAgICAgZG9jID0gYXdhaXQgc2VsZi5sYW5nZGIuZmluZF9vbmUoeyJfaWQiOiBjaGF0X2lkfSkKICAgICAgICAgICAgc2VsZi5sYW5nW2NoYXRfaWRdID0gZG9jWyJsYW5nIl0gaWYgZG9jIGVsc2UgImVuIgogICAgICAgIHJldHVybiBzZWxmLmxhbmdbY2hhdF9pZF0KCiAgICAjIE1BSU5URU5BTkNFIE1PREUgTUVUSE9EUwogICAgYXN5bmMgZGVmIHNldF9tYWludGVuYW5jZShzZWxmLCBzdGF0dXM6IGJvb2wpIC0+IE5vbmU6CiAgICAgICAgIiIiRW5hYmxlIG9yIGRpc2FibGUgbWFpbnRlbmFuY2UgbW9kZS4iIiIKICAgICAgICBhd2FpdCBzZWxmLmNhY2hlLnVwZGF0ZV9vbmUoCiAgICAgICAgICAgIHsiX2lkIjogIm1haW50ZW5hbmNlIn0sCiAgICAgICAgICAgIHsiJHNldCI6IHsic3RhdHVzIjogc3RhdHVzfX0sCiAgICAgICAgICAgIHVwc2VydD1UcnVlLAogICAgICAgICkKICAgICAgICBzZWxmLm1haW50ZW5hbmNlID0gc3RhdHVzCgogICAgYXN5bmMgZGVmIGdldF9tYWludGVuYW5jZShzZWxmKSAtPiBib29sOgogICAgICAgICIiIkNoZWNrIGlmIG1haW50ZW5hbmNlIG1vZGUgaXMgZW5hYmxlZC4iIiIKICAgICAgICBpZiBub3QgaGFzYXR0cihzZWxmLCAnbWFpbnRlbmFuY2UnKToKICAgICAgICAgICAgZG9jID0gYXdhaXQgc2VsZi5jYWNoZS5maW5kX29uZSh7Il9pZCI6ICJtYWludGVuYW5jZSJ9KQogICAgICAgICAgICBzZWxmLm1haW50ZW5hbmNlID0gZG9jLmdldCgic3RhdHVzIiwgRmFsc2UpIGlmIGRvYyBlbHNlIEZhbHNlCiAgICAgICAgcmV0dXJuIHNlbGYubWFpbnRlbmFuY2UKCiAgICAjIFZQTEFZIFRPR0dMRSBNRVRIT0RTCiAgICBhc3luYyBkZWYgZ2V0X3ZwbGF5X2VuYWJsZWQoc2VsZikgLT4gYm9vbDoKICAgICAgICAiIiJDaGVjayBpZiAvdnBsYXkgY29tbWFuZHMgYXJlIGVuYWJsZWQuIiIiCiAgICAgICAgaWYgaGFzYXR0cihzZWxmLCAidnBsYXlfZW5hYmxlZCIpOgogICAgICAgICAgICByZXR1cm4gc2VsZi52cGxheV9lbmFibGVkCgogICAgICAgIGRvYyA9IGF3YWl0IHNlbGYuY2FjaGUuZmluZF9vbmUoeyJfaWQiOiAidnBsYXlfdG9nZ2xlIn0pCiAgICAgICAgc2VsZi52cGxheV9lbmFibGVkID0gZG9jLmdldCgiZW5hYmxlZCIsIGNvbmZpZy5WSURFT19QTEFZKSBpZiBkb2MgZWxzZSBjb25maWcuVklERU9fUExBWQogICAgICAgIHJldHVybiBzZWxmLnZwbGF5X2VuYWJsZWQKCiAgICBhc3luYyBkZWYgc2V0X3ZwbGF5X2VuYWJsZWQoc2VsZiwgZW5hYmxlZDogYm9vbCkgLT4gTm9uZToKICAgICAgICAiIiJFbmFibGUgb3IgZGlzYWJsZSAvdnBsYXkgY29tbWFuZHMgZ2xvYmFsbHkuIiIiCiAgICAgICAgc2VsZi52cGxheV9lbmFibGVkID0gZW5hYmxlZAogICAgICAgIGF3YWl0IHNlbGYuY2FjaGUudXBkYXRlX29uZSgKICAgICAgICAgICAgeyJfaWQiOiAidnBsYXlfdG9nZ2xlIn0sCiAgICAgICAgICAgIHsiJHNldCI6IHsiZW5hYmxlZCI6IGVuYWJsZWR9fSwKICAgICAgICAgICAgdXBzZXJ0PVRydWUsCiAgICAgICAgKQoKICAgICMgR0xPQkFMIEJBTiBNRVRIT0RTCiAgICBhc3luYyBkZWYgYWRkX2diYW4oc2VsZiwgdXNlcl9pZDogaW50KSAtPiBOb25lOgogICAgICAgICIiIkFkZCB1c2VyIHRvIGdsb2JhbCBiYW4gbGlzdC4iIiIKICAgICAgICBhd2FpdCBzZWxmLmNhY2hlLnVwZGF0ZV9vbmUoCiAgICAgICAgICAgIHsiX2lkIjogImdiYW5uZWRfdXNlcnMifSwKICAgICAgICAgICAgeyIkYWRkVG9TZXQiOiB7InVzZXJfaWRzIjogdXNlcl9pZH19LAogICAgICAgICAgICB1cHNlcnQ9VHJ1ZSwKICAgICAgICApCiAgICAgICAgaWYgbm90IGhhc2F0dHIoc2VsZiwgJ2diYW5uZWRfdXNlcnMnKToKICAgICAgICAgICAgc2VsZi5nYmFubmVkX3VzZXJzID0gW10KICAgICAgICBpZiB1c2VyX2lkIG5vdCBpbiBzZWxmLmdiYW5uZWRfdXNlcnM6CiAgICAgICAgICAgIHNlbGYuZ2Jhbm5lZF91c2Vycy5hcHBlbmQodXNlcl9pZCkKCiAgICBhc3luYyBkZWYgZGVsX2diYW4oc2VsZiwgdXNlcl9pZDogaW50KSAtPiBOb25lOgogICAgICAgICIiIlJlbW92ZSB1c2VyIGZyb20gZ2xvYmFsIGJhbiBsaXN0LiIiIgogICAgICAgIGF3YWl0IHNlbGYuY2FjaGUudXBkYXRlX29uZSgKICAgICAgICAgICAgeyJfaWQiOiAiZ2Jhbm5lZF91c2VycyJ9LAogICAgICAgICAgICB7IiRwdWxsIjogeyJ1c2VyX2lkcyI6IHVzZXJfaWR9fSwKICAgICAgICApCiAgICAgICAgaWYgaGFzYXR0cihzZWxmLCAnZ2Jhbm5lZF91c2VycycpIGFuZCB1c2VyX2lkIGluIHNlbGYuZ2Jhbm5lZF91c2VyczoKICAgICAgICAgICAgc2VsZi5nYmFubmVkX3VzZXJzLnJlbW92ZSh1c2VyX2lkKQoKICAgIGFzeW5jIGRlZiBnZXRfZ2Jhbm5lZChzZWxmKSAtPiBsaXN0W2ludF06CiAgICAgICAgIiIiR2V0IGxpc3Qgb2YgZ2xvYmFsbHkgYmFubmVkIHVzZXJzLiIiIgogICAgICAgIGlmIG5vdCBoYXNhdHRyKHNlbGYsICdnYmFubmVkX3VzZXJzJyk6CiAgICAgICAgICAgIGRvYyA9IGF3YWl0IHNlbGYuY2FjaGUuZmluZF9vbmUoeyJfaWQiOiAiZ2Jhbm5lZF91c2VycyJ9KQogICAgICAgICAgICBzZWxmLmdiYW5uZWRfdXNlcnMgPSBkb2MuZ2V0KCJ1c2VyX2lkcyIsIFtdKSBpZiBkb2MgZWxzZSBbXQogICAgICAgIHJldHVybiBzZWxmLmdiYW5uZWRfdXNlcnMKICAgIAogICAgYXN5bmMgZGVmIGlzX2diYW5uZWQoc2VsZiwgdXNlcl9pZDogaW50KSAtPiBib29sOgogICAgICAgICIiIkNoZWNrIGlmIHVzZXIgaXMgZ2xvYmFsbHkgYmFubmVkLiIiIgogICAgICAgIGdiYW5uZWQgPSBhd2FpdCBzZWxmLmdldF9nYmFubmVkKCkKICAgICAgICByZXR1cm4gdXNlcl9pZCBpbiBnYmFubmVkCgogICAgIyBMT0dHRVIgTUVUSE9EUwogICAgYXN5bmMgZGVmIGlzX2xvZ2dlcihzZWxmKSAtPiBib29sOgogICAgICAgIHJldHVybiBzZWxmLmxvZ2dlcgoKICAgIGFzeW5jIGRlZiBnZXRfbG9nZ2VyKHNlbGYpIC0+IGJvb2w6CiAgICAgICAgZG9jID0gYXdhaXQgc2VsZi5jYWNoZS5maW5kX29uZSh7Il9pZCI6ICJsb2dnZXIifSkKICAgICAgICBpZiBkb2M6CiAgICAgICAgICAgIHNlbGYubG9nZ2VyID0gZG9jWyJzdGF0dXMiXQogICAgICAgIHJldHVybiBzZWxmLmxvZ2dlcgoKICAgIGFzeW5jIGRlZiBzZXRfbG9nZ2VyKHNlbGYsIHN0YXR1czogYm9vbCkgLT4gTm9uZToKICAgICAgICBzZWxmLmxvZ2dlciA9IHN0YXR1cwogICAgICAgIGF3YWl0IHNlbGYuY2FjaGUudXBkYXRlX29uZSgKICAgICAgICAgICAgeyJfaWQiOiAibG9nZ2VyIn0sCiAgICAgICAgICAgIHsiJHNldCI6IHsic3RhdHVzIjogc3RhdHVzfX0sCiAgICAgICAgICAgIHVwc2VydD1UcnVlLAogICAgICAgICkKCiAgICAjIENIQU5ORUwgUExBWSBNRVRIT0RTCiAgICBhc3luYyBkZWYgZ2V0X2Ntb2RlKHNlbGYsIGNoYXRfaWQ6IGludCkgLT4gaW50IHwgTm9uZToKICAgICAgICAiIiJHZXQgY2hhbm5lbCBwbGF5IG1vZGUgZm9yIGEgY2hhdC4iIiIKICAgICAgICBkb2MgPSBhd2FpdCBzZWxmLmNhY2hlLmZpbmRfb25lKHsiX2lkIjogZiJjcGxheV97Y2hhdF9pZH0ifSkKICAgICAgICByZXR1cm4gZG9jLmdldCgiY2hhbm5lbF9pZCIpIGlmIGRvYyBlbHNlIE5vbmUKCiAgICBhc3luYyBkZWYgc2V0X2Ntb2RlKHNlbGYsIGNoYXRfaWQ6IGludCwgY2hhbm5lbF9pZDogaW50IHwgTm9uZSkgLT4gTm9
+
+from random import randint
+from time import time
+import asyncio
+import logging
+
+from pymongo import AsyncMongoClient
+
+from Elevents import config, logger, userbot
+
+
+# Suppress non-critical MongoDB background task errors
+class MongoBackgroundFilter(logging.Filter):
+    def filter(self, record):
+        # Suppress AutoReconnect and _OperationCancelled background errors (these are handled internally)
+        msg = record.getMessage()
+        return not (
+            'MongoClient background task encountered an error' in msg or
+            ('AutoReconnect' in msg and 'background task' in msg) or
+            ('_OperationCancelled' in msg and 'background task' in msg)
+        )
+
+logging.getLogger('pymongo.client').addFilter(MongoBackgroundFilter())
+
+
+class MongoDB:
+    def __init__(self):
+        """
+        Initialize the MongoDB connection.
+        """
+        self.mongo = AsyncMongoClient(
+            config.MONGO_URL,
+            serverSelectionTimeoutMS=12500,
+            connectTimeoutMS=20000,
+            socketTimeoutMS=20000,
+            maxPoolSize=20,  # Reduced from 50 to prevent too many open connections
+            minPoolSize=5,   # Reduced from 10 to prevent too many open connections
+            maxIdleTimeMS=30000,  # Reduced from 45000 - close idle connections faster
+            waitQueueTimeoutMS=10000,
+            retryWrites=True,
+            retryWrites=True
+        )
+        self.db = self.mongo.Elevents
+
+        self.admin_list = {}  # Cache admin lists
+        self.admin_cache_time = {}  # Track cache freshness
+        self.active_calls = {}
+        self.blacklisted = []
+        self.notified = []
+        self.cache = self.db.cache
+        self.logger = False
+        self.maintenance = False  # Maintenance mode status
+        self.gbanned_users = []  # Globally banned users
+        self.vplay_enabled = config.VIDEO_PLAY
+
+        self.assistant = {}
+        self.assistantdb = self.db.assistant
+
+        self.auth = {}
+        self.authdb = self.db.auth
+
+        self.chats = []
+        self.chatsdb = self.db.chats
+
+        self.lang = {}
+        self.langdb = self.db.lang
+
+        self.play_mode = []
+        self.playmodedb = self.db.play
+
+        self.force_mode = []
+        self.forcemodedb = self.db.forcemode
+
+        self.users = []
+        self.usersdb = self.db.users
+
+    async def connect(self) -> None:
+        """Check if we can connect to the database with exponential backoff retry logic.
+
+        Raises:
+            SystemExit: If the connection to the database fails after retries.
+        """
+        max_retries = 3
+        retry_delay = 5  # Initial delay in seconds
+        
+        for attempt in range(1, max_retries + 1):
+            try:
+                start = time()
+                await self.mongo.admin.command("ping")
+                logger.info(
+                    f"⚡ Database connection successful. ({time() - start:.2f}s)")
+
+                # Create indexes for faster queries
+                await self.authdb.create_index("_id")
+                await self.langdb.create_index("_id")
+                await self.cache.create_index("_id")
+
+                await self.load_cache()
+                return  # Success, exit the function
+            except Exception as e:
+                if attempt < max_retries:
+                    # Exponential backoff: 5s, 10s, 20s
+                    wait_time = retry_delay * (2 ** (attempt - 1))
+                    logger.warning(f"Database connection attempt {attempt}/{max_retries} failed: {type(e).__name__}. Retrying in {wait_time}s...")
+                    await asyncio.sleep(wait_time)
+                else:
+                    raise SystemExit(
+                        f"Database connection failed after {max_retries} attempts: {type(e).__name__}") from e
+
+    async def close(self) -> None:
+        """Close the connection to the database."""
+        await self.mongo.close()
+        logger.info("Database connection closed.")
+
+    # CACHE
+    async def get_call(self, chat_id: int) -> bool:
+        return chat_id in self.active_calls
+
+    async def add_call(self, chat_id: int) -> None:
+        self.active_calls[chat_id] = 1
+
+    async def remove_call(self, chat_id: int) -> None:
+        self.active_calls.pop(chat_id, None)
+
+    async def playing(self, chat_id: int, paused: bool = None) -> bool | None:
+        if paused is not None:
+            self.active_calls[chat_id] = int(not paused)
+        return bool(self.active_calls.get(chat_id))
+
+    async def get_admins(self, chat_id: int, reload: bool = False) -> list[int]:
+        from Elevents.helpers._admins import reload_admins
+
+        # **PERFORMANCE FIX**: Increased cache from 5 to 15 minutes
+        # Reduces MongoDB queries during peak load (15-20 concurrent streams)
+        current_time = time()
+        cache_age = current_time - self.admin_cache_time.get(chat_id, 0)
+
+        if chat_id not in self.admin_list or reload or cache_age > 900:  # 15 minutes
+            self.admin_list[chat_id] = await reload_admins(chat_id)
+            self.admin_cache_time[chat_id] = current_time
+        return self.admin_list[chat_id]
+
+    # AUTH METHODS
+    async def _get_auth(self, chat_id: int) -> set[int]:
+        if chat_id not in self.auth:
+            doc = await self.authdb.find_one({"_id": chat_id}) or {}
+            self.auth[chat_id] = set(doc.get("user_ids", []))
+        return self.auth[chat_id]
+
+    async def is_auth(self, chat_id: int, user_id: int) -> bool:
+        return user_id in await self._get_auth(chat_id)
+
+    async def add_auth(self, chat_id: int, user_id: int) -> None:
+        users = await self._get_auth(chat_id)
+        if user_id not in users:
+            users.add(user_id)
+            await self.authdb.update_one(
+                {"_id": chat_id}, {"$addToSet": {"user_ids": user_id}}, upsert=True
+            )
+
+    async def rm_auth(self, chat_id: int, user_id: int) -> None:
+        users = await self._get_auth(chat_id)
+        if user_id in users:
+            users.discard(user_id)
+            await self.authdb.update_one(
+                {"_id": chat_id}, {"$pull": {"user_ids": user_id}}
+            )
+
+    # ASSISTANT METHODS
+    async def set_assistant(self, chat_id: int) -> int:
+        num = randint(1, len(userbot.clients))
+        await self.assistantdb.update_one(
+            {"_id": chat_id},
+            {"$set": {"num": num}},
+            upsert=True,
+        )
+        self.assistant[chat_id] = num
+        return num
+
+    async def get_assistant(self, chat_id: int):
+        from Elevents import tune
+
+        if chat_id not in self.assistant:
+            doc = await self.assistantdb.find_one({"_id": chat_id})
+            num = doc["num"] if doc else await self.set_assistant(chat_id)
+            self.assistant[chat_id] = num
+
+        # Check if assigned assistant is out of range (e.g., assistant was removed)
+        if self.assistant[chat_id] > len(userbot.clients):
+            # Reassign to a valid assistant
+            num = await self.set_assistant(chat_id)
+            self.assistant[chat_id] = num
+
+        return tune.clients[self.assistant[chat_id] - 1]
+
+    async def get_client(self, chat_id: int):
+        if chat_id not in self.assistant:
+            await self.get_assistant(chat_id)
+        
+        # Check if assigned assistant is out of range
+        if self.assistant[chat_id] > len(userbot.clients):
+            # Reassign to a valid assistant
+            await self.set_assistant(chat_id)
+        
+        # Get available clients dynamically based on what's actually running
+        available_clients = {}
+        if hasattr(userbot, 'one') and userbot.one in userbot.clients:
+            available_clients[1] = userbot.one
+        if hasattr(userbot, 'two') and userbot.two in userbot.clients:
+            available_clients[2] = userbot.two
+        if hasattr(userbot, 'three') and userbot.three in userbot.clients:
+            available_clients[3] = userbot.three
+        
+        return available_clients.get(self.assistant[chat_id])
+
+    # BLACKLIST METHODS
+    async def add_blacklist(self, chat_id: int) -> None:
+        if str(chat_id).startswith("-"):
+            self.blacklisted.append(chat_id)
+            return await self.cache.update_one(
+                {"_id": "bl_chats"}, {"$addToSet": {"chat_ids": chat_id}}, upsert=True
+            )
+        await self.cache.update_one(
+            {"_id": "bl_users"}, {"$addToSet": {"user_ids": chat_id}}, upsert=True
+        )
+
+    async def del_blacklist(self, chat_id: int) -> None:
+        if str(chat_id).startswith("-"):
+            self.blacklisted.remove(chat_id)
+            return await self.cache.update_one(
+                {"_id": "bl_chats"},
+                {"$pull": {"chat_ids": chat_id}},
+            )
+        await self.cache.update_one(
+            {"_id": "bl_users"},
+            {"$pull": {"user_ids": chat_id}},
+        )
+
+    async def get_blacklisted(self, chat: bool = False) -> list[int]:
+        if chat:
+            if not self.blacklisted:
+                doc = await self.cache.find_one({"_id": "bl_chats"})
+                self.blacklisted.extend(doc.get("chat_ids", []) if doc else [])
+            return self.blacklisted
+        doc = await self.cache.find_one({"_id": "bl_users"})
+        return doc.get("user_ids", []) if doc else []
+
+    # CHAT METHODS
+    async def is_chat(self, chat_id: int) -> bool:
+        return chat_id in self.chats
+
+    async def add_chat(self, chat_id: int) -> None:
+        if not await self.is_chat(chat_id):
+            self.chats.append(chat_id)
+            await self.chatsdb.insert_one({"_id": chat_id})
+
+    async def rm_chat(self, chat_id: int) -> None:
+        if await self.is_chat(chat_id):
+            self.chats.remove(chat_id)
+            await self.chatsdb.delete_one({"_id": chat_id})
+
+    async def get_chats(self) -> list:
+        if not self.chats:
+            self.chats.extend([chat["_id"] async for chat in self.chatsdb.find()])
+        return self.chats
+
+    # LANGUAGE METHODS
+    async def set_lang(self, chat_id: int, lang_code: str):
+        await self.langdb.update_one(
+            {"_id": chat_id},
+            {"$set": {"lang": lang_code}},
+            upsert=True,
+        )
+        self.lang[chat_id] = lang_code
+
+    async def get_lang(self, chat_id: int) -> str:
+        if chat_id not in self.lang:
+            doc = await self.langdb.find_one({"_id": chat_id})
+            self.lang[chat_id] = doc["lang"] if doc else "en"
+        return self.lang[chat_id]
+
+    # MAINTENANCE MODE METHODS
+    async def set_maintenance(self, status: bool) -> None:
+        """Enable or disable maintenance mode."""
+        await self.cache.update_one(
+            {"_id": "maintenance"},
+            {"$set": {"status": status}},
+            upsert=True,
+        )
+        self.maintenance = status
+
+    async def get_maintenance(self) -> bool:
+        """Check if maintenance mode is enabled."""
+        if not hasattr(self, 'maintenance'):
+            doc = await self.cache.find_one({"_id": "maintenance"})
+            self.maintenance = doc.get("status", False) if doc else False
+        return self.maintenance
+
+    # VPLAY TOGGLE METHODS
+    async def get_vplay_enabled(self) -> bool:
+        """Check if /vplay commands are enabled."""
+        if hasattr(self, 'vplay_enabled'):
+            return self.vplay_enabled
+
+        doc = await self.cache.find_one({"_id": "vplay_toggle"})
+        self.vplay_enabled = doc.get("enabled", config.VIDEO_PLAY) if doc else config.VIDEO_PLAY
+        return self.vplay_enabled
+
+    async def set_vplay_enabled(self, enabled: bool) -> None:
+        """Enable or disable /vplay commands globally."""
+        self.vplay_enabled = enabled
+        await self.cache.update_one(
+            {"_id": "vplay_toggle"},
+            {"$set": {"enabled": enabled}},
+            upsert=True,
+        )
+
+    # GLOBAL BAN METHODS
+    async def add_gban(self, user_id: int) -> None:
+        """Add user to global ban list."""
+        await self.cache.update_one(
+            {"_id": "gbanned_users"},
+            {"$addToSet": {"user_ids": user_id}},
+            upsert=True,
+        )
+        if not hasattr(self, 'gbanned_users'):
+            self.gbanned_users = []
+        if user_id not in self.gbanned_users:
+            self.gbanned_users.append(user_id)
+
+    async def del_gban(self, user_id: int) -> None:
+        """Remove user from global ban list."""
+        await self.cache.update_one(
+            {"_id": "gbanned_users"},
+            {"$pull": {"user_ids": user_id}},
+        )
+        if hasattr(self, 'gbanned_users') and user_id in self.gbanned_users:
+            self.gbanned_users.remove(user_id)
+
+    async def get_gbanned(self) -> list[int]:
+        """Get list of globally banned users."""
+        if not hasattr(self, 'gbanned_users'):
+            doc = await self.cache.find_one({"_id": "gbanned_users"})
+            self.gbanned_users = doc.get("user_ids", []) if doc else []
+        return self.gbanned_users
+    
+    async def is_gbanned(self, user_id: int) -> bool:
+        """Check if user is globally banned."""
+        gbanned = await self.get_gbanned()
+        return user_id in gbanned
+
+    # LOGGER METHODS
+    async def is_logger(self) -> bool:
+        return self.logger
+
+    async def get_logger(self) -> bool:
+        doc = await self.cache.find_one({"_id": "logger"})
+        if doc:
+            self.logger = doc["status"]
+        return self.logger
+
+    async def set_logger(self, status: bool) -> None:
+        self.logger = status
+        await self.cache.update_one(
+            {"_id": "logger"},
+            {"$set": {"status": status}},
+            upsert=True,
+        )
+
+    # CHANNEL PLAY METHODS
+    async def get_cmode(self, chat_id: int) -> int | None:
+        """Get channel play mode for a chat."""
+        doc = await self.cache.find_one({"_id": f"cplay_{chat_id}"})
+        return doc.get("channel_id") if doc else None
+
+    async def set_cmode(self, chat_id: int, channel_id: int | None) -> None:
+        """Set channel play mode for a chat."""
+        if channel_id is None:
+            await self.cache.delete_one({"_id": f"cplay_{chat_id}"})
+        else:
+            await self.cache.update_one(
+                {"_id": f"cplay_{chat_id}"},
+                {"$set": {"channel_id": channel_id}},
+                upsert=True,
+      )
+              
