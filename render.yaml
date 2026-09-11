@@ -1,5 +1,5 @@
-# ==========================================================
-# Copyright (c) 2026 MGB Not Free Creator 
+# ========================================================
+# Copyright (c) 2026 MGB Not Free Creator
 # All Rights Reserved.
 #
 # Project      : MGB Not Free Music Telegram Bot
@@ -8,16 +8,16 @@
 #
 # Bot          : @MUSIC1_NOT_FREE_BOT
 # Channel      : https://t.me/MUSIC_SUPPORT_69
-# GitHub       : https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC
+# GitHub       : https://github.com/mgbnotfree-creatur
 #
-# Unauthorized copying, modification, or redistribution
-# of this source code without permission is prohibited.
-# ==========================================================
+# Unauthorized copying, modification, or redistribut
+# of this source code without permission is prohibit
+# ========================================================
 services:
   - type: worker
     name: MGBNotFreeMusic
     runtime: python
     buildCommand: pip install -U -r requirements.txt
-    startCommand: python -m Elevents
+    startCommand: bash start
     plan: free
     
