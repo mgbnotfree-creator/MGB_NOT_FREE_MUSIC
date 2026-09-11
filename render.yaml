@@ -1,0 +1,22 @@
+# ==========================================================
+# Copyright (c) 2026 VelocityBots 
+# All Rights Reserved.
+#
+# Project      : VelocityBots API Telegram Music Bot
+# Powered By   : VelocityBots 
+# Type         : API Based Telegram Music Bot
+#
+# Bot          : @MUSIC1_NOT_FREE_BOT
+# Channel      : https://t.me/MUSIC_SUPPORT_69
+# GitHub       : mgbnotfree-creator/MGB_NOT_FREE_MUSIC
+#
+# Unauthorized copying, modification, or redistribution
+# of this source code without permission is prohibited.
+# ==========================================================
+services:
+  - type: worker
+    name: VelocityBots
+    runtime: python
+    buildCommand: pip install -U -r requirements.txt
+    startCommand: python -m Elevenyts
+    plan: free
