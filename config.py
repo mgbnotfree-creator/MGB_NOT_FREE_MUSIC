@@ -1,19 +1,18 @@
 # ==========================================================
-# Copyright (c) 2026 MGB Not Free Creator 
+# Copyright (c) 2026 MGB NOT FREE 
 # All Rights Reserved.
 #
-# Project      : MGB Not Free Music Telegram Bot
-# Powered By   : MGB Not Free Creator
+# Project      : mgb not free
+# Powered By   : MGB NOT FREE
 # Type         : API Based Telegram Music Bot
 #
-# Bot          : @MUSIC1_NOT_FREE_BOT
-# Channel      : https://t.me/MUSIC_SUPPORT_69
+# Bot          : @RIYA_MUSIC_X_BOT
+# Channel      : https://t.me/RIYA_MUSIC_BOT_786
 # GitHub       : https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC
 #
 # Unauthorized copying, modification, or redistribution
 # of this source code without permission is prohibited.
 # ==========================================================
-
 from os import getenv
 from typing import List
 from dotenv import load_dotenv
@@ -38,13 +37,13 @@ class Config:
         self.QUEUE_LIMIT: int = int(getenv("QUEUE_LIMIT", "30"))
         self.PLAYLIST_LIMIT: int = int(getenv("PLAYLIST_LIMIT", "20"))
 
-        # Assistant Sessions
+        # Assistant Sessions @genstringbot
         self.SESSION1: str = getenv("STRING_SESSION", "")
         self.SESSION2: str = getenv("STRING_SESSION2", "")
         self.SESSION3: str = getenv("STRING_SESSION3", "")
 
         # Support Links
-        self.SUPPORT_CHANNEL: str = getenv("SUPPORT_CHANNEL", "https://t.me/MUSIC_SUPPORT_69")
+        self.SUPPORT_CHANNEL: str = getenv("SUPPORT_CHANNEL", "https://t.me/RIYA_MUSIC_BOT_786")
         self.SUPPORT_CHAT: str = getenv("SUPPORT_CHAT", "https://t.me/MGB_SUPPPOT")
 
         # Excluded Chats
@@ -57,7 +56,7 @@ class Config:
         self.VIDEO_PLAY: bool = self._str_to_bool(getenv("VIDEO_PLAY", "True"))
         self.VIDEO_MAX_HEIGHT: int = self._parse_video_height()
 
-        # API & Streaming Backend Configuration
+        # ArtistBots API @ArtistApibot
         self.ARTISTBOTS_API_URL: str = getenv("ARTISTBOTS_API_URL", "http://api01.shrutibots.site")
         self.ARTISTBOTS_KEY: str = getenv("ARTISTBOTS_KEY", "ShrutiBotsBUvGvLipr11ROSbBMXuG")
         self.ENABLE_API: bool = self._str_to_bool(getenv("ENABLE_API", "True"))
