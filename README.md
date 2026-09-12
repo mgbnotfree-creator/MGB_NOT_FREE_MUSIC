@@ -2,15 +2,15 @@
 
 <img src="https://files.catbox.moe/zlmv6v.png" width="400">
 
-# 🎵 MGB NOT FREE MUSIC BOT
+# 🎵 Riya Music X Bot
 
 ### Advanced Telegram Voice Chat Music Bot
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=WELCOME+TO+MGB+NOT+FREE+MUSIC;ADVANCED+TELEGRAM+MUSIC+BOT;HIGH+QUALITY+VOICE+CHAT+STREAMING;MULTI+LANGUAGE+SUPPORT;POWERED+BY+MGB+NOT+FREE+CREATOR)](https://github.com)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=WELCOME+TO+RIYA+MUSIC+X+BOT;ADVANCED+TELEGRAM+MUSIC+BOT;HIGH+QUALITY+VOICE+CHAT+STREAMING;MULTI+LANGUAGE+SUPPORT;POWERED+BY+MGB+NOT+FREE)](https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC)
 
 <br>
 
-[![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=for-the-badge&logo=telegram)](https://t.me/MUSIC_SUPPORT_69)
+[![Telegram Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=for-the-badge&logo=telegram)](https://t.me/RIYA_MUSIC_BOT_786)
 [![Support Group](https://img.shields.io/badge/Telegram-Support-blue?style=for-the-badge&logo=telegram)](https://t.me/MGB_SUPPPOT)
 
 <br>
@@ -36,13 +36,13 @@
 
 ---
 
-# 🌟 About MGB NOT FREE MUSIC BOT
+# 🌟 About Riya Music X Bot
 
-MGB Not Free Music Bot is an advanced Telegram Voice Chat Music Bot built with **Pyrogram**, **PyTgCalls**, and **MongoDB**.
+Riya Music X Bot is an advanced Telegram Voice Chat Music Bot built with **Pyrogram**, **PyTgCalls**, and **MongoDB**.
 
 It allows users to stream high-quality music directly inside Telegram Voice Chats with premium playback performance, playlist management, queue system, admin controls, broadcasting features, statistics tracking, and multi-language support.
 
-Designed for speed, stability, scalability, and modern Telegram communities.
+Designed for speed, stability, scalability and modern Telegram communities.
 
 ---
 
@@ -50,52 +50,79 @@ Designed for speed, stability, scalability, and modern Telegram communities.
 
 ## 🎵 Music Streaming
 
-✔ High Quality Audio Streaming  
-✔ YouTube Search & Play  
-✔ Direct URL Playback  
-✔ Voice Chat Streaming  
-✔ Playlist Support  
-✔ Auto Queue Management  
-✔ Continuous Playback  
-✔ Fast Audio Processing  
-✔ Crystal Clear Sound Quality  
+✔ High Quality Audio Streaming
+
+✔ YouTube Search & Play
+
+✔ Direct URL Playback
+
+✔ Voice Chat Streaming
+
+✔ Playlist Support
+
+✔ Auto Queue Management
+
+✔ Continuous Playback
+
+✔ Fast Audio Processing
+
+✔ Crystal Clear Sound Quality
 
 ---
 
 ## 🎛 Admin Controls
 
-✔ Pause Music  
-✔ Resume Music  
-✔ Skip Song  
-✔ Stop Playback  
-✔ Force Play  
-✔ Mute Assistant  
-✔ Unmute Assistant  
-✔ Volume Control  
-✔ Queue Cleanup  
+✔ Pause Music
+
+✔ Resume Music
+
+✔ Skip Song
+
+✔ Stop Playback
+
+✔ Force Play
+
+✔ Mute Assistant
+
+✔ Unmute Assistant
+
+✔ Volume Control
+
+✔ Queue Cleanup
 
 ---
 
 ## 👥 User Management
 
-✔ Authorized Users  
-✔ Sudo Users  
-✔ Global Ban System  
-✔ User Statistics  
-✔ Premium Features Ready  
-✔ Owner Controls  
+✔ Authorized Users
+
+✔ Sudo Users
+
+✔ Global Ban System
+
+✔ User Statistics
+
+✔ Premium Features Ready
+
+✔ Owner Controls
 
 ---
 
 ## 🤖 Bot Management
 
-✔ Restart Command  
-✔ Broadcast System  
-✔ Maintenance Mode  
-✔ Logs Monitoring  
-✔ Error Reporting  
-✔ Auto Restart Support  
-✔ Database Integration  
+✔ Restart Command
+
+✔ Broadcast System
+
+✔ Maintenance Mode
+
+✔ Logs Monitoring
+
+✔ Error Reporting
+
+✔ Auto Restart Support
+
+✔ Database Integration
 
 ---
 
@@ -122,6 +149,8 @@ STRING_SESSION=
 MONGO_DB_URI=
 LOGGER_ID=
 OWNER_ID=
+ARTISTBOTS_API_URL= 
+ARTISTBOTS_KEY=
 SUPPORT_CHAT= (Optional)
 SUPPORT_CHANNEL= (Optional)
 DEFAULT_THUMB= (Optional)
