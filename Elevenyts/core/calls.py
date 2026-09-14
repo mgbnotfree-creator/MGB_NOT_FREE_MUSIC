@@ -253,34 +253,32 @@ class TgCall(PyTgCalls):
         max_retries = 3
         retry_delays = (0.0, 0.20, 0.45)
 
-        try:
-            for attempt in range(max_retries):
-                try:
-                    await client.play(
-                        chat_id=chat_id,
-                        stream=stream,
-                        config=types.GroupCallConfig(auto_start=True),
-                    )
-                    break
-                except (exceptions.NoActiveGroupCall, errors.RPCError) as e:
-                    error_msg = str(e)
-                    if "GROUPCALL_INVALID" in error_msg or "GROUPCALL" in error_msg or isinstance(e, exceptions.NoActiveGroupCall):
-                        if attempt < max_retries - 1:
-                            await asyncio.sleep(retry_delays[attempt + 1])
-                            continue
-                    raise
+        for attempt in range(max_retries):
+            try:
+                await client.play(
+                    chat_id=chat_id,
+                    stream=stream,
+                    config=types.GroupCallConfig(auto_start=True),
+                )
+                break
+            except (exceptions.NoActiveGroupCall, errors.RPCError) as e:
+                error_msg = str(e)
+                if "GROUPCALL_INVALID" in error_msg or "GROUPCALL" in error_msg or isinstance(e, exceptions.NoActiveGroupCall):
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(retry_delays[attempt + 1])
+                        continue
                 raise
-        except Exception as e:
-            error_msg = str(e).lower()
-            if "cannot be initialized more than once" in error_msg or "connection" in error_msg:
-                if attempt < max_retries - 1:
-                    try:
-                        await client.leave_call(chat_id, close=False)
-                    except Exception:
-                        pass
-                    await asyncio.sleep(retry_delays[attempt + 1])
-                    continue
-            raise
+            except Exception as e:
+                error_msg = str(e).lower()
+                if "cannot be initialized more than once" in error_msg or "connection" in error_msg:
+                    if attempt < max_retries - 1:
+                        try:
+                            await client.leave_call(chat_id, close=False)
+                        except Exception:
+                            pass
+                        await asyncio.sleep(retry_delays[attempt + 1])
+                        continue
+                raise
 
         if config.THUMB_GEN and isinstance(media, Track):
             try:
@@ -315,5 +313,5 @@ class TgCall(PyTgCalls):
                     _thumb,
                     text,
                     reply_markup,
-                )
-                
+)
+        
