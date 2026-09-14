@@ -19,8 +19,8 @@ import random
 
 from pyrogram import enums, errors, filters, types
 
-from MGB_NOT_FREE_MUSIC import app, config, db, lang, queue
-from MGB_NOT_FREE_MUSIC.helpers import buttons, utils
+from Elevenyts import app, config, db, lang, queue
+from Elevenyts.helpers import buttons, utils
 
 
 # -------------------------------------------------------------------------
