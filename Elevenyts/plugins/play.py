@@ -26,9 +26,9 @@ from pyrogram.errors import (
     MessageIdInvalid,
 )
 
-from MGB_NOT_FREE_MUSIC import app, config, db, lang, queue, tg, tune, yt
-from MGB_NOT_FREE_MUSIC.helpers import buttons, next_play_emoji, utils
-from MGB_NOT_FREE_MUSIC.helpers._play import checkUB
+from Elevenyts import app, config, db, lang, queue, tg, tune, yt
+from Elevenyts.helpers import buttons, next_play_emoji, utils
+from Elevenyts.helpers._play import checkUB
 
 logger = logging.getLogger(__name__)
 
@@ -322,9 +322,9 @@ async def play_hndlr(
                     # Can't send message, continue anyway
                     pass
             
-            # NEW: Start preloading queued tracks in background
+            # Start preloading queued tracks in background
             try:
-                from MGB_NOT_FREE_MUSIC import preload
+                from Elevenyts import preload
                 asyncio.create_task(preload.start_preload(chat_id, count=2))
             except Exception:
                 # Non-critical, continue without preload
@@ -403,3 +403,4 @@ async def play_hndlr(
     except Exception:
         # Can't send message, but playback is working
         pass
+        
