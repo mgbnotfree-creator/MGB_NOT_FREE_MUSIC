@@ -17,7 +17,7 @@ import json
 from functools import wraps
 from pathlib import Path
 
-from MGB_NOT_FREE_MUSIC import db, logger
+from Elevenyts import db, logger
 
 # Supported language codes and their display names
 lang_codes = {
@@ -52,7 +52,7 @@ class Language:
     def __init__(self):
         """Initialize the language system and load all translation files."""
         self.lang_codes = lang_codes
-        self.lang_dir = Path("MGB_NOT_FREE_MUSIC/locales")
+        self.lang_dir = Path("Elevenyts/locales")
         self.languages = self.load_files()
 
     def load_files(self):
@@ -117,3 +117,4 @@ class Language:
             return wrapper
 
         return decorator
+        
