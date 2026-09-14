@@ -16,8 +16,8 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, config, db, lang, queue
-from MGB_NOT_FREE_MUSIC.helpers import Track, buttons, thumb
+from Elevenyts import app, config, db, lang, queue
+from Elevenyts.helpers import Track, buttons, thumb
 
 
 @app.on_message(filters.command(["queue", "playing", "cqueue", "cplaying"]) & filters.group & ~app.bl_users)
@@ -76,4 +76,4 @@ async def _queue_func(_, m: types.Message):
             _playing,
         ),
     )
-  
+    
