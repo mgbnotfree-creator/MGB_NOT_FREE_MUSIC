@@ -16,7 +16,7 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang
+from Elevenyts import app, db, lang
 
 
 # =====================================================
@@ -260,4 +260,4 @@ async def _blocked_users(_, m: types.Message):
     
     text += "\n\n</blockquote>"
     await sent.edit_text(text)
-  
+        
