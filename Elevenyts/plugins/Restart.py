@@ -21,7 +21,7 @@ import asyncio
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang, stop
+from Elevenyts import app, db, lang, stop
 
 
 @app.on_message(filters.command(["logs"]) & app.sudo_filter)
@@ -112,14 +112,14 @@ async def _restart(_, m: types.Message):
     
     sent = await m.reply_text(m.lang["restarting"])
 
-    for directory in ["cache", "downloads"]:
+for directory in ["cache", "downloads"]:
         shutil.rmtree(directory, ignore_errors=True)
 
     await sent.edit_text(m.lang["restarted"])
     asyncio.create_task(stop())
     await asyncio.sleep(2)
 
-    os.execl(sys.executable, sys.executable, "-m", "MGB_NOT_FREE_MUSIC")
+    os.execl(sys.executable, sys.executable, "-m", "Elevenyts")
 
 
 @app.on_message(filters.command(["update"]) & app.sudo_filter)
@@ -189,7 +189,7 @@ async def _update(_, m: types.Message):
         asyncio.create_task(stop())
         await asyncio.sleep(2)
         
-        os.execl(sys.executable, sys.executable, "-m", "MGB_NOT_FREE_MUSIC")
+        os.execl(sys.executable, sys.executable, "-m", "Elevenyts")
         
     except FileNotFoundError:
         await sent.edit_text(
@@ -200,5 +200,5 @@ async def _update(_, m: types.Message):
         await sent.edit_text(
             "<blockquote><b>❌ Update Error</b></blockquote>\n\n"
             f"<blockquote>{str(e)}</blockquote>"
-      )
-  
+        )
+        
