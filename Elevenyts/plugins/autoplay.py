@@ -64,7 +64,7 @@ async def _autoplay(_, m: types.Message):
         text = (
             "<blockquote>⏹️ <b>Autoplay: OFF</b>\n\n"
             "Autoplay band kar diya. Queue khatam hone par playback ruk jayega.\n\n"
-            "Dobara chalu karne ke liye /autoplay karo.</blockquote>"
+            "Dobara chalu karne के लिए /autoplay karo.</blockquote>"
         )
 
     await m.reply_text(text)
