@@ -20,8 +20,8 @@ import logging
 from pyrogram import filters, types
 from pyrogram.errors import ChatSendPlainForbidden, ChatWriteForbidden
 
-from MGB_NOT_FREE_MUSIC import tune, app, db, lang
-from MGB_NOT_FREE_MUSIC.helpers import can_manage_vc
+from Elevenyts import tune, app, db, lang
+from Elevenyts.helpers import can_manage_vc
 
 logger = logging.getLogger(__name__)
 
@@ -64,4 +64,4 @@ async def _skip(_, m: types.Message):
         await sent_msg.delete()
     except Exception:
         pass
-      
+        
