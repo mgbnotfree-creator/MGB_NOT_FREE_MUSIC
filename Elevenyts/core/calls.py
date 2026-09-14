@@ -302,4 +302,18 @@ class TgCall(PyTgCalls):
                 media.duration,
                 media.user,
             )
-            
+            reply_markup = buttons.play_markup(_lang, chat_id)
+            if message:
+                await self._edit_media_with_retry(
+                    message,
+                    InputMediaPhoto(media=_thumb, caption=text),
+                    reply_markup,
+                )
+            else:
+                await self._send_photo_with_retry(
+                    target_chat_for_messages,
+                    _thumb,
+                    text,
+                    reply_markup,
+                )
+                
