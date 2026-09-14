@@ -17,7 +17,7 @@
 import asyncio
 from pyrogram import Client
 
-from MGB_NOT_FREE_MUSIC import config, logger
+from Elevenyts import config, logger
 
 
 class Userbot(Client):
@@ -36,8 +36,8 @@ class Userbot(Client):
 
         # Create a Pyrogram client for each configured session
         for key, string_key in clients.items():
-            # Unique name: MGB_NOT_FREE_MUSIC_UB1, MGB_NOT_FREE_MUSIC_UB2, etc.
-            name = f"MGB_NOT_FREE_MUSIC_UB{key[-1]}"
+            # Unique name: Elevenyts_UB1, Elevenyts_UB2, etc.
+            name = f"Elevenyts_UB{key[-1]}"
             # Get session string from config
             session = getattr(config, string_key)
 
@@ -151,3 +151,4 @@ class Userbot(Client):
             logger.warning(f"Error stopping assistant 3: {e}")
         
         logger.info("Assistants stopped.")
+        
