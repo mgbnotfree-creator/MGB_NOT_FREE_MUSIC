@@ -17,8 +17,8 @@
 from py_yt import VideosSearch
 from pyrogram import types
 
-from MGB_NOT_FREE_MUSIC import app
-from MGB_NOT_FREE_MUSIC.helpers import buttons
+from Elevenyts import app
+from Elevenyts.helpers import buttons
 
 
 @app.on_inline_query(~app.bl_users)
@@ -66,3 +66,4 @@ async def inline_query_handler(_, query: types.InlineQuery):
             await app.answer_inline_query(query.id, results=answers, cache_time=5)
     except Exception:
         pass
+        
