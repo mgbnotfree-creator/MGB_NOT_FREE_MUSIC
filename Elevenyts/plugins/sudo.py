@@ -16,8 +16,8 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang
-from MGB_NOT_FREE_MUSIC.helpers import utils
+from Elevenyts import app, db, lang
+from Elevenyts.helpers import utils
 
 
 @app.on_message(filters.command(["addsudo", "delsudo", "rmsudo"]) & app.sudo_filter)
@@ -88,4 +88,4 @@ async def _listsudo(_, m: types.Message):
             txt += f"<blockquote><u><b>Sudo Users:</b></u>{sudo_list}\n\n</blockquote>"
 
     await sent.edit_text(txt)
-  
+    
