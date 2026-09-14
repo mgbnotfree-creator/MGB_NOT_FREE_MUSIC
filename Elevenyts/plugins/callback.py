@@ -21,8 +21,8 @@ from functools import wraps
 from pyrogram import filters, types
 from pyrogram.errors import FloodWait, QueryIdInvalid
 
-from MGB_NOT_FREE_MUSIC import tune, app, config, db, lang, logger, queue, tg, yt
-from MGB_NOT_FREE_MUSIC.helpers import admin_check, buttons, can_manage_vc
+from Elevenyts import tune, app, config, db, lang, logger, queue, tg, yt
+from Elevenyts.helpers import admin_check, buttons, can_manage_vc
 
 
 def safe_callback(func):
@@ -517,4 +517,4 @@ async def _forcemode(_, query: types.CallbackQuery):
             _language,
             chat_id,
         )
-          )
+                      )
