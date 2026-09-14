@@ -112,7 +112,7 @@ async def _restart(_, m: types.Message):
     
     sent = await m.reply_text(m.lang["restarting"])
 
-for directory in ["cache", "downloads"]:
+    for directory in ["cache", "downloads"]:
         shutil.rmtree(directory, ignore_errors=True)
 
     await sent.edit_text(m.lang["restarted"])
@@ -200,5 +200,4 @@ async def _update(_, m: types.Message):
         await sent.edit_text(
             "<blockquote><b>❌ Update Error</b></blockquote>\n\n"
             f"<blockquote>{str(e)}</blockquote>"
-        )
-        
+)
