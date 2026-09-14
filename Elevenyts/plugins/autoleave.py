@@ -17,7 +17,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from MGB_NOT_FREE_MUSIC import app, db
+from Elevenyts import app, db
 
 
 @app.on_message(
@@ -48,6 +48,8 @@ async def autoleave_command(_, m: Message) -> None:
     
     subcommand = m.command[1].lower()
     
+    subcommand = m.command[1].lower()
+    
     if subcommand == "enable":
         await db.set_autoleave(m.chat.id, True)
         await m.reply_text(
@@ -67,3 +69,4 @@ async def autoleave_command(_, m: Message) -> None:
             "• <code>/autoleave enable</code>\n"
             "• <code>/autoleave disable</code></blockquote>"
         )
+        
