@@ -18,8 +18,8 @@ import logging
 from pyrogram import filters, types
 from pyrogram.errors import ChatSendPlainForbidden, ChatWriteForbidden
 
-from MGB_NOT_FREE_MUSIC import tune, app, db, lang
-from MGB_NOT_FREE_MUSIC.helpers import buttons, can_manage_vc
+from Elevenyts import tune, app, db, lang
+from Elevenyts.helpers import buttons, can_manage_vc
 
 logger = logging.getLogger(__name__)
 
@@ -64,4 +64,4 @@ async def _resume(_, m: types.Message):
         )
     except (ChatSendPlainForbidden, ChatWriteForbidden):
         logger.warning("Cannot send text in media-only chat")
-      
+        
