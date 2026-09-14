@@ -18,7 +18,7 @@ from pyrogram import Client, filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType, ParseMode
 from pyrogram.types import Message
 
-from MGB_NOT_FREE_MUSIC import app
+from Elevenyts import app
 
 
 @app.on_message(filters.command(["groupdata", "chatinfo", "groupinfo"]) & filters.group)
@@ -143,5 +143,5 @@ async def group_data_handler(client: Client, message: Message):
         await message.reply_text(
             f"<blockquote>❌ <b>Failed to fetch group info:</b>\n<code>{str(e)}</code></blockquote>",
             parse_mode=ParseMode.HTML
-          )
-      
+        )
+        
