@@ -16,7 +16,7 @@
 
 import os
 from pyrogram import filters, types
-from MGB_NOT_FREE_MUSIC import app, db, lang, queue
+from Elevenyts import app, db, lang, queue
 
 
 @app.on_message(filters.command(["active", "activevc", "ac"]) & app.sudo_filter)
@@ -58,4 +58,4 @@ async def active_voice_chats(_, m: types.Message):
     finally:
         if os.path.exists("active_vc_list.txt"):
             os.remove("active_vc_list.txt")
-          
+            
