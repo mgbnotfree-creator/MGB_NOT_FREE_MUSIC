@@ -16,7 +16,7 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang
+from Elevenyts import app, db, lang
 
 
 @app.on_message(filters.command(["maintenance"]) & app.sudo_filter)
@@ -66,5 +66,5 @@ async def _maintenance(_, m: types.Message):
             "<b>Usage:</b>\n"
             "<code>/maintenance enable</code>\n"
             "<code>/maintenance disable</code></blockquote>"
-)
-                                
+        )
+        
