@@ -16,7 +16,7 @@
 import pyrogram
 from typing import Optional
 
-from MGB_NOT_FREE_MUSIC import config, logger
+from Elevenyts import config, logger
 
 
 class Bot(pyrogram.Client):
@@ -41,7 +41,7 @@ class Bot(pyrogram.Client):
     def __init__(self):
         """Initialize the bot client with configuration settings."""
         super().__init__(
-            name="MGB_NOT_FREE_MUSIC",
+            name="Elevenyts",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             bot_token=config.BOT_TOKEN,
@@ -115,4 +115,4 @@ class Bot(pyrogram.Client):
         """
         await super().stop()
         logger.info("✅ Bot client stopped.")
-
+        
