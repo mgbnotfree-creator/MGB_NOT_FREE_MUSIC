@@ -15,7 +15,7 @@
 # ==========================================================
 
 from pyrogram import filters, types
-from MGB_NOT_FREE_MUSIC import app, db, lang, userbot
+from Elevenyts import app, db, lang, userbot
 
 
 @app.on_message(filters.command(["gban"]) & app.sudo_filter)
@@ -181,4 +181,4 @@ async def _gbanlist(_, m: types.Message):
     
     text += "\n\n</blockquote>"
     await sent.edit_text(text)
-      
+    
