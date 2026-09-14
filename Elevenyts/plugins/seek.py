@@ -16,8 +16,8 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang, queue, tune
-from MGB_NOT_FREE_MUSIC.helpers import can_manage_vc
+from Elevenyts import app, db, lang, queue, tune
+from Elevenyts.helpers import can_manage_vc
 
 
 @app.on_message(filters.command(["seek", "seekback", "cseek", "cseekback"]) & filters.group & ~app.bl_users)
@@ -84,4 +84,4 @@ async def _seek(_, m: types.Message):
         )
     else:
         await sent.edit_text("Failed to seek!")
-      
+        
