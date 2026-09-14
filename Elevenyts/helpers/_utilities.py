@@ -17,7 +17,7 @@
 import re
 from pyrogram import enums, errors, types
 
-from MGB_NOT_FREE_MUSIC import app, config
+from Elevenyts import app, config
 
 
 class Utilities:
@@ -161,3 +161,4 @@ class Utilities:
             return True
         except errors.RPCError:
             return False
+    
