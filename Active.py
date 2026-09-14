@@ -56,5 +56,6 @@ async def _activevc(_, m: types.Message):
             )
         )
     finally:
-        os.remove("activevc.txt")
-      
+        if os.path.exists("activevc.txt"):
+            os.remove("activevc.txt")
+        
