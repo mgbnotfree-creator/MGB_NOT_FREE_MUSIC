@@ -15,7 +15,7 @@
 # ==========================================================
 from pathlib import Path
 
-from MGB_NOT_FREE_MUSIC import logger
+from Elevenyts import logger
 
 
 def ensure_dirs():
@@ -31,4 +31,4 @@ def ensure_dirs():
         # Create directory (and parents if needed)
         Path(dir).mkdir(parents=True, exist_ok=True)
     logger.info("📁 Cache directories updated.")
-  
+    
