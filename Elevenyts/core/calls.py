@@ -23,8 +23,8 @@ from pyrogram.types import InputMediaPhoto, Message
 from pytgcalls import PyTgCalls, exceptions, types
 from pytgcalls.pytgcalls_session import PyTgCallsSession
 
-from MGB_NOT_FREE_MUSIC import app, config, db, lang, logger, preload, queue, userbot, yt
-from MGB_NOT_FREE_MUSIC.helpers import Media, Track, buttons, thumb, next_play_emoji
+from Elevenyts import app, config, db, lang, logger, preload, queue, userbot, yt
+from Elevenyts.helpers import Media, Track, buttons, thumb, next_play_emoji
 
 # Suppress pytgcalls harmless errors (library bugs - not critical)
 
@@ -178,14 +178,7 @@ class TgCall(PyTgCalls):
         client = await db.get_assistant(chat_id)
         _lang = await lang.get_lang(chat_id)
 
-        # Determine where messages should go:
-        # - If message_chat_id provided (channel play): send to group
-        # - Otherwise: send to same chat as audio
         target_chat_for_messages = message_chat_id if message_chat_id else chat_id
-
-        # IMPORTANT: Do not generate the custom thumbnail here.
-        # Thumbnail generation performs network + PIL work and used to block
-        # voice-chat startup. Playback must start first.
         _thumb = config.DEFAULT_THUMB
 
         if not media.file_path:
@@ -195,19 +188,14 @@ class TgCall(PyTgCalls):
                 logger.error(f"No file path for media in {chat_id}")
                 return
 
-        # FAST PATH: normal group playback does not need an extra get_chat RPC.
-        # Channels still require membership validation before starting the call.
         try:
             chat = None
             if message_chat_id is not None:
-                # Keep the existing channel safety check, but don't turn ordinary
-                # group playback into an extra validation round-trip.
                 try:
                     chat = await app.get_chat(chat_id)
                 except errors.RPCError:
                     chat = None
             if chat is not None and chat.type == enums.ChatType.CHANNEL:
-                # Get the userbot (Pyrogram client) to access .me attribute
                 userbot_client = await db.get_client(chat_id)
                 if not userbot_client:
                     logger.error(f"No userbot client available for {chat_id}")
@@ -221,19 +209,16 @@ class TgCall(PyTgCalls):
                         logger.error(f"Assistant banned in channel {chat_id}")
                         if message:
                             await message.edit_text("❌ Assistant is banned in this channel.")
-                        # Disable channel play
                         await db.set_cmode(chat_id, None)
                         return
                 except errors.RPCError as e:
                     if "CHANNEL_INVALID" in str(e) or "USER_NOT_PARTICIPANT" in str(e):
-                        logger.error(
-                            f"Assistant not in channel {chat_id}: {e}")
+                        logger.error(f"Assistant not in channel {chat_id}: {e}")
                         if message:
                             await message.edit_text(
                                 f"❌ <b>Assistant not in channel!</b>\n\n"
                                 f"<blockquote>Please add @{userbot_client.me.username} to the channel as admin with voice chat permissions.</blockquote>"
                             )
-                        # Disable channel play
                         await db.set_cmode(chat_id, None)
                         return
         except errors.RPCError as e:
@@ -241,22 +226,13 @@ class TgCall(PyTgCalls):
                 logger.error(f"Invalid channel {chat_id}: {e}")
                 if message:
                     await message.edit_text("❌ Invalid channel. Disabling channel play.")
-                await db.set_cmode(chat_id, None)  # Disable channel play
+                await db.set_cmode(chat_id, None)
                 return
             raise
 
-        # Configure audio stream with optimized buffering for lag-free playback
-        # PERFORMANCE FIX: Increased buffers prevent stuttering/lagging during playback
         if seek_time > 1:
-            # Seeking: Still need buffers but skip to position first
             ffmpeg_params = f"-ss {seek_time} -probesize 2M -analyzeduration 1M -rtbufsize 2M -fflags +genpts+igndts"
         else:
-            # Normal playback with aggressive buffering:
-            # - probesize 10M: Large input buffer (prevents underruns)
-            # - analyzeduration 5M: Analyze more data (better format detection)
-            # - rtbufsize 5M: Real-time buffer (crucial for network streams)
-            # - fflags +genpts+igndts: Generate PTS, ignore DTS (smooth playback)
-            # - sync ext: External sync (reduces A/V desync)
             ffmpeg_params = "-probesize 2M -analyzeduration 1M -rtbufsize 2M -fflags +genpts+igndts -sync ext"
 
         is_video = getattr(media, "video", False)
@@ -274,12 +250,6 @@ class TgCall(PyTgCalls):
             ffmpeg_parameters=ffmpeg_params,
         )
 
-        # FAST VC JOIN:
-        # Try to start/reuse the call immediately.  The previous implementation
-        # always performed get_call() + leave_call() first, adding an extra RPC
-        # round-trip even when the assistant was already connected.
-        # If PyTgCalls reports a stale connection, only then do we disconnect
-        # and retry.
         max_retries = 3
         retry_delays = (0.0, 0.20, 0.45)
 
@@ -312,9 +282,6 @@ class TgCall(PyTgCalls):
                     continue
             raise
 
-        # Playback is already started at this point. Generate the custom
-        # thumbnail only now, so image processing/network latency cannot
-        # delay joining the VC or starting audio.
         if config.THUMB_GEN and isinstance(media, Track):
             try:
                 _thumb = await thumb.generate(media)
@@ -335,8 +302,4 @@ class TgCall(PyTgCalls):
                 media.duration,
                 media.user,
             )
-            if not media.is_live and media.duration_sec:
-                import time as time_module
-                played = media.time
-                duratio
-      
+            
