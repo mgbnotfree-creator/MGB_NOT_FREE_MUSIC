@@ -17,8 +17,8 @@
 import time
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang
-from MGB_NOT_FREE_MUSIC.helpers import admin_check, is_admin, utils
+from Elevenyts import app, db, lang
+from Elevenyts.helpers import admin_check, is_admin, utils
 
 
 @app.on_message(filters.command(["auth", "unauth"]) & filters.group & ~app.bl_users)
@@ -88,3 +88,4 @@ async def _admincache(_, m: types.Message):
     
     if not await utils.safe_edit(sent, m.lang["admin_cache_reloaded"]):
         await utils.safe_text(m, m.lang["admin_cache_reloaded"])
+        
