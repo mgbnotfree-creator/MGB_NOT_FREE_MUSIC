@@ -19,7 +19,7 @@ from functools import wraps
 from pyrogram import StopPropagation, enums, types
 from pyrogram.errors import ChatSendPlainForbidden, ChatWriteForbidden
 
-from MGB_NOT_FREE_MUSIC import app, db
+from Elevenyts import app, db
 
 
 def admin_check(func):
@@ -146,3 +146,4 @@ async def is_admin_callback(query: types.CallbackQuery) -> bool:
     
     admins = await db.get_admins(chat_id)
     return user_id in admins
+    
