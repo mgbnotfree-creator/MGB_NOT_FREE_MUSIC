@@ -17,7 +17,7 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from MGB_NOT_FREE_MUSIC import app
+from Elevenyts import app
 
 
 @app.on_message(filters.command("link") & filters.private & app.sudo_filter)
@@ -35,4 +35,4 @@ async def group_link(_, message: Message):
         )
     except Exception as e:
         await message.reply_text(f"❌ <b>Error:</b> {e}")
-      
+        
