@@ -16,8 +16,8 @@
 
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db
-from MGB_NOT_FREE_MUSIC.helpers import can_manage_vc
+from Elevenyts import app, db
+from Elevenyts.helpers import can_manage_vc
 
 
 @app.on_message(filters.command(["autoplay", "cautoplay"]) & filters.group & ~app.bl_users)
@@ -68,3 +68,4 @@ async def _autoplay(_, m: types.Message):
         )
 
     await m.reply_text(text)
+    
