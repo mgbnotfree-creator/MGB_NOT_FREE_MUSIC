@@ -17,8 +17,8 @@
 from pyrogram import filters
 from pyrogram.types import Message
 
-from MGB_NOT_FREE_MUSIC import app, db, lang
-from MGB_NOT_FREE_MUSIC.helpers import can_manage_vc
+from Elevenyts import app, db, lang
+from Elevenyts.helpers import can_manage_vc
 
 
 @app.on_message(filters.command(["loop", "cloop"]) & filters.group & ~app.bl_users)
@@ -77,4 +77,4 @@ async def _loop(_, m: Message):
     
     await db.set_loop(chat_id, new_loop)
     await m.reply_text(text)
-  
+    
