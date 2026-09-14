@@ -48,8 +48,6 @@ async def autoleave_command(_, m: Message) -> None:
     
     subcommand = m.command[1].lower()
     
-    subcommand = m.command[1].lower()
-    
     if subcommand == "enable":
         await db.set_autoleave(m.chat.id, True)
         await m.reply_text(
