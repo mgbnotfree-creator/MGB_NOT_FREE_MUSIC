@@ -18,7 +18,7 @@ import asyncio
 import logging
 from typing import Dict, Set
 
-logger = logging.getLogger("MGB_NOT_FREE_MUSIC")
+logger = logging.getLogger("Elevenyts")
 
 
 class PreloadManager:
@@ -80,7 +80,7 @@ class PreloadManager:
         """
         try:
             # Import here to avoid circular dependency
-            from MGB_NOT_FREE_MUSIC import yt
+            from Elevenyts import yt
 
             logger.debug(f"Starting preload for chat {chat_id}: {media.title}")
             
@@ -165,7 +165,7 @@ class PreloadManager:
         """
         try:
             # Import here to avoid circular dependency
-            from MGB_NOT_FREE_MUSIC import queue
+            from Elevenyts import queue
             
             # Get full queue and preload upcoming tracks (skip first one - that's current)
             all_tracks = queue.get_queue(chat_id)
