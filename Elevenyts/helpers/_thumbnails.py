@@ -24,8 +24,8 @@ import aiohttp
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 from pathlib import Path
 
-from MGB_NOT_FREE_MUSIC import config
-from MGB_NOT_FREE_MUSIC.helpers import Track
+from Elevenyts import config
+from Elevenyts.helpers import Track
 
 
 # ── canvas ───────────────────────────────────────────────────────────────────
@@ -51,8 +51,8 @@ WHITE  = (255, 255, 255)
 LGRAY  = (200, 200, 215)
 
 # ── font paths ───────────────────────────────────────────────────────────────
-_FONT_BOLD    = "MGB_NOT_FREE_MUSIC/helpers/Raleway-Bold.ttf"
-_FONT_REGULAR = "MGB_NOT_FREE_MUSIC/helpers/Inter-Light.ttf"
+_FONT_BOLD    = "Elevenyts/helpers/Raleway-Bold.ttf"
+_FONT_REGULAR = "Elevenyts/helpers/Inter-Light.ttf"
 
 
 def _font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
