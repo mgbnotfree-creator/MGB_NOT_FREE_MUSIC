@@ -17,7 +17,7 @@
 from pyrogram import Client, filters
 from pyrogram.enums import ParseMode
 
-from MGB_NOT_FREE_MUSIC import app
+from Elevenyts import app
 
 
 @app.on_message(filters.command("id"))
@@ -60,4 +60,4 @@ async def getid(client: Client, message):
         disable_web_page_preview=True,
         parse_mode=ParseMode.HTML,
     )
-  
+    
