@@ -35,9 +35,9 @@ if sys.platform != "win32":
     except Exception:
         pass
 
-from MGB_NOT_FREE_MUSIC import (tune, app, config, db,
+from Elevenyts import (tune, app, config, db,
                    logger, stop, userbot, yt)
-from MGB_NOT_FREE_MUSIC.plugins import all_modules
+from Elevenyts.plugins import all_modules
 
 
 # HTTP Server for Render health checks
@@ -93,7 +93,7 @@ async def main():
         # Step 7: Load all plugin modules (commands like /play, /pause, etc.)
         for module in all_modules:
             try:
-                importlib.import_module(f"MGB_NOT_FREE_MUSIC.plugins.{module}")
+                importlib.import_module(f"Elevenyts.plugins.{module}")
             except Exception as e:
                 logger.error(f"Failed to load plugin {module}: {e}", exc_info=True)
         logger.info(f"🔌 Loaded {len(all_modules)} plugin modules.")
@@ -141,3 +141,4 @@ if __name__ == "__main__":
                 loop.stop()
         except:
             pass
+            
