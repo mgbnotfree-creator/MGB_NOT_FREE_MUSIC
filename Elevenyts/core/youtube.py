@@ -28,8 +28,8 @@ from typing import Optional, Union
 
 from pyrogram import enums, types
 from py_yt import Playlist, VideosSearch
-from MGB_NOT_FREE_MUSIC import config, logger
-from MGB_NOT_FREE_MUSIC.helpers import Track, utils
+from Elevenyts import config, logger
+from Elevenyts.helpers import Track, utils
 
 
 class YouTube:
@@ -107,7 +107,7 @@ class YouTube:
     def get_cookies(self):
         """Get random cookie file from cookies directory."""
         if not self.checked:
-            cookies_dir = "MGB_NOT_FREE_MUSIC/cookies"
+            cookies_dir = "Elevenyts/cookies"
             if os.path.exists(cookies_dir):
                 for file in os.listdir(cookies_dir):
                     if file.endswith(".txt"):
@@ -120,7 +120,7 @@ class YouTube:
                 logger.warning("🍪 Cookies are missing; downloads might fail.")
             return None
         
-        cookie_file = f"MGB_NOT_FREE_MUSIC/cookies/{random.choice(self.cookies)}"
+        cookie_file = f"Elevenyts/cookies/{random.choice(self.cookies)}"
         logger.debug(f"Using cookie file: {cookie_file}")
         return cookie_file
 
@@ -130,7 +130,7 @@ class YouTube:
         saved_count = 0
         
         # Create cookies directory if not exists
-        cookies_dir = Path("MGB_NOT_FREE_MUSIC/cookies")
+        cookies_dir = Path("Elevenyts/cookies")
         cookies_dir.mkdir(parents=True, exist_ok=True)
         
         for url in urls:
@@ -444,3 +444,4 @@ class YouTube:
         except Exception as e:
             logger.error(f"Error fetching track metadata for {video_id}: {e}")
             return None
+        
