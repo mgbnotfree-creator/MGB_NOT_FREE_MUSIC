@@ -17,7 +17,7 @@
 from pyrogram import filters, types
 from pyrogram.errors import ChatAdminRequired, ChannelPrivate
 
-from MGB_NOT_FREE_MUSIC import app, config
+from Elevenyts import app, config
 
 
 # ==========================================================
@@ -169,4 +169,4 @@ async def get_group_link(_, message: types.Message):
 
     except Exception as e:
         return await message.reply_text(f"⚠️ Error:\n{e}")
-      
+    
