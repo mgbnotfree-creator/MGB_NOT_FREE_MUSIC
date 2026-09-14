@@ -19,7 +19,7 @@ from pyrogram import filters, types, errors, enums
 from Elevenyts import app, db, lang, logger, userbot, config
 
 
-@app.on_message(filters.command(["leave"]) & app.app.sudo_filter)
+@app.on_message(filters.command(["leave"]) & app.sudo_filter)
 @lang.language()
 async def _leave(_, m: types.Message):
     """
@@ -108,3 +108,4 @@ async def _leaveall(_, m: types.Message):
         f"<blockquote><b>ℹ️ Cleanup Complete</b></blockquote>\n\n"
         f"<blockquote>Assistants left <b>{total_left}</b> inactive groups.</blockquote>"
     )
+    
