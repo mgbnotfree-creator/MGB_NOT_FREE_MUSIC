@@ -21,7 +21,7 @@ import logging
 
 from pymongo import AsyncMongoClient
 
-from MGB_NOT_FREE_MUSIC import config, logger, userbot
+from Elevenyts import config, logger, userbot
 
 
 # Suppress non-critical MongoDB background task errors
@@ -55,7 +55,7 @@ class MongoDB:
             retryWrites=True,
             retryReads=True
         )
-        self.db = self.mongo.MGB_NOT_FREE_MUSIC
+        self.db = self.mongo.Elevenyts
 
         self.admin_list = {}  # Cache admin lists
         self.admin_cache_time = {}  # Track cache freshness
@@ -152,7 +152,7 @@ class MongoDB:
         return bool(self.active_calls.get(chat_id))
 
     async def get_admins(self, chat_id: int, reload: bool = False) -> list[int]:
-        from MGB_NOT_FREE_MUSIC.helpers._admins import reload_admins
+        from Elevenyts.helpers._admins import reload_admins
 
         # **PERFORMANCE FIX**: Increased cache from 5 to 15 minutes
         # Reduces MongoDB queries during peak load (15-20 concurrent streams)
@@ -202,7 +202,7 @@ class MongoDB:
         return num
 
     async def get_assistant(self, chat_id: int):
-        from MGB_NOT_FREE_MUSIC import tune
+        from Elevenyts import tune
 
         if chat_id not in self.assistant:
             doc = await self.assistantdb.find_one({"_id": chat_id})
@@ -425,5 +425,5 @@ class MongoDB:
         await self.cache.update_one(
             {"_id": "sudoers"},
             {"$pull": {"user_ids": user_id}}
-        )
-
+            )
+                   
