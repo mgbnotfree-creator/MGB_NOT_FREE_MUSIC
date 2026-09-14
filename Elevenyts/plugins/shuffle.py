@@ -17,8 +17,8 @@
 import random
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang, queue
-from MGB_NOT_FREE_MUSIC.helpers import can_manage_vc
+from Elevenyts import app, db, lang, queue
+from Elevenyts.helpers import can_manage_vc
 
 
 @app.on_message(filters.command(["shuffle", "cshuffle"]) & filters.group & ~app.bl_users)
@@ -61,4 +61,4 @@ async def _shuffle(_, m: types.Message):
         queue.add(chat_id, item)
     
     await m.reply_text(f"Queue shuffled! ({len(remaining)} tracks randomized)")
-      
+    
