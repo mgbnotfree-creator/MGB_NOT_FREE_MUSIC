@@ -17,7 +17,7 @@
 import re
 from pyrogram import filters, types, enums
 
-from MGB_NOT_FREE_MUSIC import app, config
+from Elevenyts import app, config
 
 
 # Pattern to detect admin triggers
