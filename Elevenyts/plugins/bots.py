@@ -18,7 +18,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 from pyrogram.enums import ChatMembersFilter, ParseMode
 
-from MGB_NOT_FREE_MUSIC import app
+from Elevenyts import app
 
 
 @app.on_message(filters.command("bots") & filters.group)
@@ -56,4 +56,4 @@ async def list_bots(client, message: Message):
         
     except Exception as e:
         await message.reply_text(f"❌ <b>Error:</b> {str(e)}", parse_mode=ParseMode.HTML)
-      
+        
