@@ -18,7 +18,7 @@ from pyrogram import filters
 from pyrogram.enums import ChatMembersFilter, ChatMemberStatus, ChatType
 from pyrogram.types import Message
 
-from MGB_NOT_FREE_MUSIC import app, config, db
+from Elevenyts import app, config, db
 
 
 @app.on_message(filters.command(["channelplay"]) & filters.group & ~app.bl_users)
@@ -116,5 +116,5 @@ async def channelplay_command(_, m: Message):
             f"ℹ️ Channel play mode enabled!\n"
             f"<b>Channel:</b> {chat.title}\n"
             f"<b>ID:</b> <code>{chat.id}</code>"
-  )
-          
+    )
+            
