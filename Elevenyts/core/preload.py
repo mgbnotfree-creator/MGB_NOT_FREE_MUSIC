@@ -18,7 +18,7 @@ import asyncio
 from pathlib import Path
 from typing import Dict, Set
 
-from MGB_NOT_FREE_MUSIC import logger
+from Elevenyts import logger
 
 
 class PreloadManager:
@@ -45,7 +45,7 @@ class PreloadManager:
             chat_id: The chat ID to preload tracks for
             count: Number of upcoming tracks to preload (default: 2)
         """
-        from MGB_NOT_FREE_MUSIC import queue, yt
+        from Elevenyts import queue, yt
         
         # Get upcoming tracks from queue
         upcoming_tracks = queue.peek_next(chat_id, count)
@@ -91,7 +91,7 @@ class PreloadManager:
             chat_id: The chat ID this track belongs to
             track: Track object to preload
         """
-        from MGB_NOT_FREE_MUSIC import yt
+        from Elevenyts import yt
         
         try:
             track_id = track.id
@@ -165,3 +165,4 @@ class PreloadManager:
         """
         if chat_id in self._preload_tasks:
             self._preload_tasks[chat_id].discard(task)
+            
