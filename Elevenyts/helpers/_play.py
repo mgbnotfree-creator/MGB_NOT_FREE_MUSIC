@@ -18,7 +18,7 @@ import asyncio
 
 from pyrogram import enums, errors, types
 
-from MGB_NOT_FREE_MUSIC import app, config, db, queue, yt
+from Elevenyts import app, config, db, queue, yt
 
 
 def checkUB(play):
@@ -232,3 +232,4 @@ def checkUB(play):
         return await play(_, m, force, url, cplay, video)
 
     return wrapper
+        
