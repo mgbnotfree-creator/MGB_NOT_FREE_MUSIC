@@ -20,8 +20,10 @@ import time
 
 from pyrogram import types
 
-from MGB_NOT_FREE_MUSIC import config
-from MGB_NOT_FREE_MUSIC.helpers import Media, buttons, utils
+from Elevenyts import config
+from Elevenyts.helpers import Media, buttons, utils
+
+
 
 
 class Telegram:
