@@ -20,8 +20,8 @@ import psutil
 import pyrogram
 from pyrogram import filters, types
 
-from MGB_NOT_FREE_MUSIC import app, boot, config, db, lang, tune
-from MGB_NOT_FREE_MUSIC.helpers import buttons
+from Elevenyts import app, boot, config, db, lang, tune
+from Elevenyts.helpers import buttons
 
 
 @app.on_message(filters.command(["alive", "ping"]) & ~app.bl_users)
@@ -76,4 +76,4 @@ async def _ping(_, m: types.Message):
             text=caption_text,
             reply_markup=buttons.ping_markup(m.lang["support"]),
         )
-          
+        
