@@ -17,7 +17,7 @@
 from pyrogram import types
 from pyrogram.enums import ButtonStyle
 
-from MGB_NOT_FREE_MUSIC import app, config, lang
+from Elevenyts import app, config, lang
 
 
 class Inline:
@@ -239,7 +239,7 @@ class Inline:
             ],
             [
                 self.ikb(text=lang["help"], callback_data="help", style=ButtonStyle.SUCCESS),
-                self.ikb(text="🌟 Source Code", url="https://github.com/mgbnotfree-creator/MGB_NOT_FREE_MUSIC", style=ButtonStyle.DANGER),
+                self.ikb(text="🌟 Source Code", url="https://github.com/your-username/Elevenyts", style=ButtonStyle.DANGER),
                 self.ikb(text="🌐 Language", callback_data="help_langs", style=ButtonStyle.PRIMARY),
             ],
             [
@@ -257,4 +257,5 @@ class Inline:
                     self.ikb(text="▶️ Watch on YouTube", url=link, style=ButtonStyle.PRIMARY),
                 ]
             ]
-        )
+            )
+            
