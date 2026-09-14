@@ -22,8 +22,8 @@ import psutil
 from pyrogram import __version__ as pyrover, filters, types
 from pytgcalls import __version__ as pytgver
 
-from MGB_NOT_FREE_MUSIC import app, config, db, lang, userbot
-from MGB_NOT_FREE_MUSIC.plugins import all_modules
+from Elevenyts import app, config, db, lang, userbot
+from Elevenyts.plugins import all_modules
 
 
 @app.on_message(filters.command(["stats"]) & ~app.bl_users)
@@ -76,10 +76,10 @@ async def _stats(_, m: types.Message):
         f"{used_mem}GB | {total_mem}GB",
         f"{cpu_percent}% ({cpu_count} cores)",
         f"{used_disk}GB | {total_disk}GB",
-        sys.version.split()[0],
+        sys.version.split(),
         pyrover,
         pytgver,
     )
     
     await sent.edit_caption(_utext)
-  
+    
