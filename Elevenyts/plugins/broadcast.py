@@ -20,7 +20,7 @@ from typing import List, Tuple
 
 from pyrogram import enums, errors, filters, types
 
-from MGB_NOT_FREE_MUSIC import app, db, lang, config
+from Elevenyts import app, db, lang, config
 
 
 # Global flag to track if a broadcast is currently running
@@ -202,7 +202,7 @@ def _parse_broadcast_command(text: str) -> Tuple[List[str], str]:
         else:
             message_text = first_line_without_flags
     else:
-        message_text = remaining_text
+            message_text = remaining_text
 
     return flags, message_text.strip()
 
@@ -460,7 +460,6 @@ async def _send_broadcast(
             except Exception:
                 pass
             await asyncio.sleep(fw.value + 5)
-            # Retry item handling could go here or pass
         except errors.UserIsBlocked:
             failed_log += f"{chat_id} - User blocked bot\n"
             continue
@@ -509,4 +508,4 @@ async def _send_broadcast_completion(
             media_type = "audio"
         elif getattr(media_message, 'document', None):
             media_type = "document"
-      
+                
