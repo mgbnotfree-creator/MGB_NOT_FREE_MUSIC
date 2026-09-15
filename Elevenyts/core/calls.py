@@ -50,6 +50,7 @@ class DummyEnvChecker:
 
 class TgCall(PyTgCalls):
     def __init__(self):
+        super().__init__(app)
         self.clients = []
         self._play_next_locks = {}  # Lock to prevent concurrent play_next calls per chat
         self._stream_end_cache = {}  # Cache to prevent duplicate stream end processing
