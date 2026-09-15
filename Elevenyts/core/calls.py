@@ -43,11 +43,25 @@ class PyTgCallsErrorFilter(logging.Filter):
 logging.getLogger('pyrogram.dispatcher').addFilter(PyTgCallsErrorFilter())
 
 
+class DummyEnvChecker:
+    def check_environment(self):
+        pass
+
+
 class TgCall(PyTgCalls):
     def __init__(self):
         self.clients = []
         self._play_next_locks = {}  # Lock to prevent concurrent play_next calls per chat
         self._stream_end_cache = {}  # Cache to prevent duplicate stream end processing
+        self._env_checker = DummyEnvChecker()
+
+    @property
+    def _is_running(self):
+        return getattr(self, 'is_running', False)
+
+    @_is_running.setter
+    def _is_running(self, val):
+        self.is_running = val
 
     async def boot(self):
         """Start PyTgCalls client"""
@@ -317,5 +331,5 @@ class TgCall(PyTgCalls):
                     _thumb,
                     text,
                     reply_markup,
-)
-            
+    )
+        
