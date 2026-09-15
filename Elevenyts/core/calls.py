@@ -48,25 +48,32 @@ class DummyEnvChecker:
         pass
 
 
-class TgCall(PyTgCalls):
+class TgCall:
     def __init__(self):
-        super().__init__()
+        self.app = PyTgCalls(app)
         self.clients = []
         self._play_next_locks = {}  # Lock to prevent concurrent play_next calls per chat
         self._stream_end_cache = {}  # Cache to prevent duplicate stream end processing
         self._env_checker = DummyEnvChecker()
 
     @property
+    def is_running(self):
+        return getattr(self.app, 'is_running', False)
+
+    @property
     def _is_running(self):
-        return getattr(self, 'is_running', False)
+        return self.is_running
 
     @_is_running.setter
     def _is_running(self, val):
-        self.is_running = val
+        pass
 
     async def boot(self):
         """Start PyTgCalls client"""
-        await self.start()
+        await self.app.start()
+
+    async def start(self):
+        await self.app.start()
 
     async def _edit_media_with_retry(self, message: Message, media_obj: InputMediaPhoto, reply_markup):
         """Edit media with basic FloodWait handling."""
@@ -332,5 +339,4 @@ class TgCall(PyTgCalls):
                     _thumb,
                     text,
                     reply_markup,
-    )
-    
+)
