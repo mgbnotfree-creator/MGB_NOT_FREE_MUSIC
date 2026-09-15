@@ -92,6 +92,14 @@ preload = PreloadManager()
 
 # Initialize call handler
 from Elevenyts.core.calls import TgCall
+
+# Patch missing _is_running attribute for compatibility
+if not hasattr(TgCall, '_is_running'):
+    TgCall._is_running = property(
+        lambda self: getattr(self, 'is_running', False),
+        lambda self, val: setattr(self, 'is_running', val)
+    )
+
 tune = TgCall()
 
 
