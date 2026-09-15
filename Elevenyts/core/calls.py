@@ -279,7 +279,65 @@ class TgCall:
         max_retries = 3
         retry_delays = (0.0, 0.20, 0.45)
 
-### अगली स्टेप:
-1. इस कोड को अपनी `Elevenyts/core/calls.py` में paste करके save करें।
-2. Render पर **Manual Deploy -> Clear build cache & deploy** पर click करें।
-    
+        for attempt in range(max_retries):
+            try:
+                await client.play(
+                    chat_id=chat_id,
+                    stream=stream,
+                    config=types.GroupCallConfig(auto_start=True),
+                )
+                break
+            except (exceptions.NoActiveGroupCall, errors.RPCError) as e:
+                error_msg = str(e)
+                if "GROUPCALL_INVALID" in error_msg or "GROUPCALL" in error_msg or isinstance(e, exceptions.NoActiveGroupCall):
+                    if attempt < max_retries - 1:
+                        await asyncio.sleep(retry_delays[attempt + 1])
+                        continue
+                raise
+            except Exception as e:
+                error_msg = str(e).lower()
+                if "cannot be initialized more than once" in error_msg or "connection" in error_msg:
+                    if attempt < max_retries - 1:
+                        try:
+                            await client.leave_call(chat_id, close=False)
+                        except Exception:
+                            pass
+                        await asyncio.sleep(retry_delays[attempt + 1])
+                        continue
+                raise
+
+        if config.THUMB_GEN and isinstance(media, Track):
+            try:
+                _thumb = await thumb.generate(media)
+            except Exception as e:
+                logger.debug(f"Thumbnail generation skipped for {chat_id}: {e}")
+                _thumb = config.DEFAULT_THUMB
+
+        if seek_time:
+            media.time = seek_time
+        else:
+            media.time = 1
+
+        if not seek_time:
+            await db.add_call(chat_id)
+            text = _lang["play_media"].format(
+                media.url,
+                media.title,
+                media.duration,
+                media.user,
+            )
+            reply_markup = buttons.play_markup(_lang, chat_id)
+            if message:
+                await self._edit_media_with_retry(
+                    message,
+                    InputMediaPhoto(media=_thumb, caption=text),
+                    reply_markup,
+                )
+            else:
+                await self._send_photo_with_retry(
+                    target_chat_for_messages,
+                    _thumb,
+                    text,
+                    reply_markup,
+    )
+            
