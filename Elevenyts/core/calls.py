@@ -49,6 +49,10 @@ class TgCall(PyTgCalls):
         self._play_next_locks = {}  # Lock to prevent concurrent play_next calls per chat
         self._stream_end_cache = {}  # Cache to prevent duplicate stream end processing
 
+    async def boot(self):
+        """Start PyTgCalls client"""
+        await self.start()
+
     async def _edit_media_with_retry(self, message: Message, media_obj: InputMediaPhoto, reply_markup):
         """Edit media with basic FloodWait handling."""
         try:
@@ -314,4 +318,4 @@ class TgCall(PyTgCalls):
                     text,
                     reply_markup,
 )
-        
+            
