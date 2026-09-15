@@ -50,7 +50,8 @@ class DummyEnvChecker:
 
 class TgCall:
     def __init__(self):
-        self.app = PyTgCalls(userbot)
+        client_instance = getattr(userbot, 'one', getattr(userbot, 'client', userbot))
+        self.app = PyTgCalls(client_instance)
         self.clients = []
         self._play_next_locks = {}  # Lock to prevent concurrent play_next calls per chat
         self._stream_end_cache = {}  # Cache to prevent duplicate stream end processing
@@ -340,4 +341,4 @@ class TgCall:
                     text,
                     reply_markup,
     )
-            
+                    
